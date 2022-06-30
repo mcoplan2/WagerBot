@@ -1,5 +1,5 @@
 require('dotenv').config();
-const ProfileModel = require('../../models/profileSchema');
+const profileModel = require('../../models/profileSchema');
 
 module.exports = async (client, messageCreate) => {
 
@@ -9,9 +9,9 @@ module.exports = async (client, messageCreate) => {
 
     let profileData;
     try {
-        profileData = await ProfileModel.findOne({ userID: messageCreate.author.id});
+        profileData = await profileModel.findOne({ userID: messageCreate.author.id});
         if(!profileData){
-            let profile = await ProfileModel.create({
+            let profile = await profileModel.create({
                 userID: messageCreate.author.id,
                 serverID: messageCreate.guild.id,
                 tokens: 200,
