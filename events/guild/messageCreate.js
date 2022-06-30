@@ -13,7 +13,7 @@ module.exports = async (client, messageCreate) => {
         if(!profileData){
             let profile = await ProfileModel.create({
                 userID: messageCreate.author.id,
-                serverID: messageCreate.author.id,
+                serverID: messageCreate.guild.id,
                 tokens: 200,
                 bank: 0
             });
