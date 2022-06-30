@@ -9,11 +9,11 @@ module.exports = async (client, messageCreate) => {
 
     let profileData;
     try {
-        profileData = await ProfileModel.findOne({ userID: messageCreate.author.userID});
+        profileData = await ProfileModel.findOne({ userID: messageCreate.author.id});
         if(!profileData){
             let profile = await ProfileModel.create({
-                userID: messageCreate.author.userID,
-                serverID: messageCreate.author.serverID,
+                userID: messageCreate.author.id,
+                serverID: messageCreate.author.id,
                 tokens: 200,
                 bank: 0
             });
@@ -28,5 +28,10 @@ module.exports = async (client, messageCreate) => {
 
     const command = client.commands.get(cmd);
 
-    if(command) command.execute(client, messageCreate, args, profileData);
+    try {
+        command.execute(messageCreate, args, client, profileData);
+    } catch(err) {
+        messageCreate.reply("Error occured");
+        console.log(err);
+    }
 }
