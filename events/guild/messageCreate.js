@@ -26,10 +26,11 @@ module.exports = async (client, messageCreate) => {
     const args = messageCreate.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLowerCase();
 
-    const command = client.commands.get(cmd);
+    const command = client.commands.get(cmd) || client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
+    if(!command) return messageCreate.channel.send("This command doesn't exist - use !commands to see a list of commands");
 
     try {
-        command.execute(messageCreate, args, client, profileData);
+        command.execute(messageCreate, args, cmd, client, profileData);
     } catch(err) {
         messageCreate.reply("Error occured");
         console.log(err);
