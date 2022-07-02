@@ -5,7 +5,7 @@ module.exports = {
     //TODO Deathmatch ? 1v1 against someone
     name: "balance",
     aliases: ['bal', 'total', 'bln'],
-    cooldown: 30,
+    cooldown: 10,
     permissions: [],
     description: "Check your balance",
     async execute(messageCreate, args, cmd, client, profileData) {
