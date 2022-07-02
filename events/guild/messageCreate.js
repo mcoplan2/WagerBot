@@ -4,7 +4,7 @@ const profileModel = require('../../models/profileSchema');
 
 const cooldowns = new Map();
 
-module.exports = async (client, messageCreate) => {
+module.exports = async (client, messageCreate, interaction) => {
 
     const prefix = process.env.PREFIX;
 
