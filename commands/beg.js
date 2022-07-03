@@ -2,8 +2,6 @@ const profileModel = require('../models/profileSchema');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 
 module.exports = {
-    //TODO: 8ball ? Ask bot question and bet against server as a group?
-    //TODO: Freeforall ? Create a bet with a question and reacting to emote YES/NO Places bet
     //TODO Deathmatch ? 1v1 against someone
     name: "beg",
     aliases: [],
