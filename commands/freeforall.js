@@ -1,6 +1,9 @@
 const profileModel = require('../models/profileSchema');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
+// TODO STILL HAVE ISSUES WITH THE TIMING OF THE EVENTS....
+// THESE WILL NEED TO BE 20-30M APART SOMEHOW
+// CHECK FOR ROLE BEFORE
 module.exports = {
     name: "free for all",
     aliases: ["ffa"],
@@ -8,8 +11,14 @@ module.exports = {
     cooldown: 10,
     description: "Free for all against everyone that enters!",
     async execute(messageCreate, interaction, args, cmd, client, profileData) {
-        // grab the string of the entire command
-        // {!ffa String here}
+
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Wager");
+
+        // check if the user has the role before allowing them to use the command
+        if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
+
+            // grab the string of the entire command
+            // {!ffa String here}
         message = await messageCreate.fetch();
 
         // remove the command from the string
@@ -90,7 +99,7 @@ module.exports = {
             // Create Another Embed after the above ends to pass in the result of if they won or lost.
             let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row]})
             const filter = i => ((i.customId === "yes") || (i.customId === "no"))
-            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 8000})
+            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 2400000})
             collector2.on("collect", async (i) => {
                 row.components[0].setDisabled(true);
                 row.components[1].setDisabled(true);
@@ -172,5 +181,11 @@ module.exports = {
                 });   
             })
         }
-    )},
+    )
+
+        } else {
+            messageCreate.channel.send("You need to !register before using this bot.")
+        }
+        
+    },
 }
