@@ -33,27 +33,29 @@ module.exports = {
                     .setStyle('DANGER')
             );
     
-        newstring = "Will "+string;
+        newstring = "**Will "+string+'**';
         newstring2 = "Did "+string;
 
                 
         const newEmbed = new MessageEmbed()
             .setColor(0x00FFFF)
-            .setTitle("Choose an Outcome")
             .setDescription(newstring)
-            .setTimestamp()
+            .addFields(
+                { name: 'Rules:', value: 'One entry allowed'+'\n'
+                                        +'Multiple entries will be disqualified'},
+            )
+            .setFooter({ text: 'Token Cost: 100               Time Limit: 3 minutes to enter' })
 
         const newEmbed2 = new MessageEmbed()
             .setColor(0x00FFFF)
             .setTitle("Choose the result")
             .setDescription(newstring2)
-            .setTimestamp()
         
         let messageEmbed = await messageCreate.channel.send({embeds: [newEmbed], components: [row]})
 
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"))
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 12000})
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000})
         collector.on("collect", async (i) => {
             await i.reply(`${i.user.username} clicked on the ${i.customId} button.`);
         })
@@ -70,7 +72,7 @@ module.exports = {
             })
 
             // function to remove duplicates from each set incase they tried to enter both a 'Yes' and 'No' response
-            // NO CHEATERS!!
+            // we will remove both these results since you should only be allowed to choose one option.
             function getDifference(setA, setB) {
                 return new Set(
                     [...setA].filter(element => !setB.has(element))
@@ -87,7 +89,7 @@ module.exports = {
             // Create Another Embed after the above ends to pass in the result of if they won or lost.
             let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row]})
             const filter = i => ((i.customId === "yes") || (i.customId === "no"))
-            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 6000})
+            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 180000})
             collector2.on("collect", async (i) => {
                 row.components[0].setDisabled(true);
                 row.components[1].setDisabled(true);
