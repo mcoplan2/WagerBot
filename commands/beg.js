@@ -10,7 +10,7 @@ module.exports = {
     description: "Beg for more tokens",
     async execute(messageCreate, args, cmd, client, profileData) {
 
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Wager");
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");
 
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {

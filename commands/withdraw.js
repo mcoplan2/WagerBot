@@ -1,4 +1,5 @@
 const profileModel = require('../models/profileSchema');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: "withdraw",
@@ -8,7 +9,7 @@ module.exports = {
     description: "withdraw tokens from your bank",
     async execute(messageCreate, args, cmd, client, profileData) {
 
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Wager");
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");
 
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
@@ -26,7 +27,16 @@ module.exports = {
                         bank: -amount,
                     },
                 });
-                return messageCreate.channel.send(`You Withdraw ${amount} tokens out of your bank.`)
+
+                const newEmbed = new MessageEmbed()
+                .setColor(0x00FFFF)
+                .setAuthor({ name: `${messageCreate.author.username}'s Withdrawal slip`, iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
+                .addFields(
+                    { name: 'Withdrew: ', value: `${amount}`, inline: true },
+                )
+                .setTimestamp()
+
+                return messageCreate.channel.send({embeds: [newEmbed]});
             } catch(err){
                 console.log(err)
             }

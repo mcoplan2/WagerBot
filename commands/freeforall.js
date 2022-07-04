@@ -1,9 +1,6 @@
 const profileModel = require('../models/profileSchema');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
-// TODO STILL HAVE ISSUES WITH THE TIMING OF THE EVENTS....
-// THESE WILL NEED TO BE 20-30M APART SOMEHOW
-// CHECK FOR ROLE BEFORE
 module.exports = {
     name: "free for all",
     aliases: ["ffa"],
@@ -12,7 +9,7 @@ module.exports = {
     description: "Free for all against everyone that enters!",
     async execute(messageCreate, interaction, args, cmd, client, profileData) {
 
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Wager");
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");
 
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
@@ -61,9 +58,9 @@ module.exports = {
 
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 8000});
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 60000});
         collector.on("collect", async (i) => {
-            await i.reply(`${i.user.username} clicked on the ${i.customId} button.`);
+            await i.reply(`A user entered the bet, they chose ${i.customId}!`);
         })
 
         const yes_users = new Set();
@@ -88,18 +85,25 @@ module.exports = {
             }
             const set1 = yes_users;
             const set2 = no_users;
-            console.log(yes_users)
-            console.log(no_users)
 
             const yes_users_no_dups = getDifference(set1, set2);
             const no_users_no_dups = getDifference(set2, set1);
-            console.log(yes_users_no_dups);
-            console.log(no_users_no_dups);
 
+            // ADD 30M WAIT TIMER HERE
+            // WE WANT TO WAIT THE "BET" TO END SO THE USER CAN SELECT THEIR RESULT
+            // COULD REFACTOR TO IMPLEMENT SOMEONE SENDING A REQUEST WITH THE ANSWER
+            
+            await sleep(1800000)
+            function sleep(ms) {
+                return new Promise(async(resolve) => {
+                    setTimeout(resolve, ms);
+                });
+            }
+            // THIS SECTION IS THE 2nd PART WHERE THE USER SELECTS THEIR RESULT FROM THE BET
             // Create Another Embed after the above ends to pass in the result of if they won or lost.
             let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row]})
             const filter = i => ((i.customId === "yes") || (i.customId === "no"))
-            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 2400000})
+            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 60000})
             collector2.on("collect", async (i) => {
                 row.components[0].setDisabled(true);
                 row.components[1].setDisabled(true);
@@ -107,6 +111,7 @@ module.exports = {
                 await i.reply(`${i.user.username} clicked on the ${i.customId} button.`);
             })
             
+            // FINALLY WE NEED TO UPDATE THE DATABASE WITH THE RESULTS
             // THIS WILL BE THE LOGIC FOR THE DATABASE
             collector2.on("end", async (collected2) => {
                 collected2.forEach( async (value) => {
@@ -184,7 +189,7 @@ module.exports = {
     )
 
         } else {
-            messageCreate.channel.send("You need to !register before using this bot.")
+            return messageCreate.channel.send("You need to !register before using this bot.")
         }
         
     },
