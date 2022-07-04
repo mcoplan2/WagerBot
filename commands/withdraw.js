@@ -6,7 +6,7 @@ module.exports = {
     name: "withdraw",
     aliases: ["wd"],
     permissions: [],
-    cooldown: 60,
+    cooldown: 30,
     description: "withdraw tokens from your bank",
     async execute(messageCreate, args, cmd, client, profileData) {
 

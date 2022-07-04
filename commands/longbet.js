@@ -63,7 +63,7 @@ module.exports = {
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
         const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000});
         collector.on("collect", async (i) => {
-            await i.reply(`A user entered the bet, they chose ${i.customId}!`);
+            await i.reply(`A user selected ${i.customId} on this bet.`);
         })
 
         const yes_users = new Set();

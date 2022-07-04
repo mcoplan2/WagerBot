@@ -6,7 +6,7 @@ module.exports = {
     name: "deposit",
     aliases: ["dep"],
     permissions: [],
-    cooldown: 60,
+    cooldown: 30,
     description: "deposit tokens into your bank",
     async execute(messageCreate, args, cmd, client, profileData) {
 
