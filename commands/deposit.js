@@ -1,5 +1,6 @@
 const profileModel = require('../models/profileSchema');
 const { MessageEmbed } = require('discord.js');
+require('dotenv').config();
 
 module.exports = {
     name: "deposit",
@@ -9,7 +10,9 @@ module.exports = {
     description: "deposit tokens into your bank",
     async execute(messageCreate, args, cmd, client, profileData) {
 
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");
+        const role = process.env.ROLE_NAME;
+
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === ROLE_NAME);
 
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {

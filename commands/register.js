@@ -1,11 +1,15 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js');
+require('dotenv').config();
+
 module.exports = {
     name: 'register',
     cooldown: 30,
     description: 'allows user to be eligible to earn tokens and participate in events',
     async execute(messageCreate, client, args, profileData) {
         const file = new MessageAttachment("./index.jpg")
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");
+
+        const role = process.env.ROLE_NAME;
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === ROLE_NAME);
 
         await messageCreate.member.roles.add(eligibleRole);
         const newEmbed = new MessageEmbed()
