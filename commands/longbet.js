@@ -6,7 +6,7 @@ module.exports = {
     aliases: ["lb"],
     permissions: [],
     cooldown: 10,
-    description: "Free for all against everyone that enters!",
+    description: "A bet that lasts around 30 minutes",
     async execute(messageCreate, interaction, args, cmd, client, profileData) {
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");

@@ -2,11 +2,11 @@ const profileModel = require('../models/profileSchema');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: "longbet",
-    aliases: ["lb"],
+    name: "shortbet",
+    aliases: ["sb"],
     permissions: [],
     cooldown: 10,
-    description: "Free for all against everyone that enters!",
+    description: "A bet that lasts around 5 minutes",
     async execute(messageCreate, interaction, args, cmd, client, profileData) {
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === "Gambler");
