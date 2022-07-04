@@ -8,8 +8,8 @@ module.exports = {
     async execute(messageCreate, client, args, profileData) {
         const file = new MessageAttachment("./index.jpg")
 
-        const role = process.env.ROLE_NAME;
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === ROLE_NAME);
+        const role_name = process.env.ROLE_NAME;
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
         await messageCreate.member.roles.add(eligibleRole);
         const newEmbed = new MessageEmbed()

@@ -15,9 +15,9 @@ module.exports = {
     description: "Check the leaderboard",
     async execute(messageCreate, args, cmd, client, profileData) {
 
-        const role = process.env.ROLE_NAME;
+        const role_name = process.env.ROLE_NAME;
 
-        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === ROLE_NAME);
+        const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
