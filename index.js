@@ -12,11 +12,11 @@ client.buttons = new Collection();
     require(`./handlers/${handler}`)(client)
 })
 
-mongoose.connect(process.env.MONGODB_SRV, {
+await mongoose.connect(process.env.MONGODB_SRV, {
 }).then( () => {
     console.log("Connected to DB");
 }).catch((err) => {
     console.log(err)
 });
 
-client.login(process.env.DISCORD_TOKEN);
+await client.login(process.env.DISCORD_TOKEN);
