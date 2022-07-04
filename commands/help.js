@@ -16,12 +16,13 @@ module.exports = {
                 .setDescription("List of commands you can use")
                 .addFields(
                     { name: `${prefix}register`, value: `Allows the user to earn tokens and participate in events`},
-                    { name: `${prefix}balance`, value: `Displays the current balance of tokens for the user`},
+                    { name: `${prefix}balance|bal`, value: `Displays the current balance of tokens for the user`},
                     { name: `${prefix}deposit [value]`, value: `Allows the user to deposit an amount into their bank`},
                     { name: `${prefix}withdraw [value]`, value: `Allows the user to withdraw an amount from their bank`},
-                    { name: `${prefix}leaderboard`, value: `Displays the users with the most tokens`},
+                    { name: `${prefix}leaderboard|top`, value: `Displays the users with the most tokens`},
                     { name: `${prefix}beg`, value: `Daily cooldown the user can use to generate a random number of tokens`},
-                    { name: `${prefix}ffa [Phrase a bet]`, value: `Free for all event, choose yes or no`},
+                    { name: `${prefix}longbet|lb [Phrase a bet]`, value: `A bet that lasts around 30 minutes`},
+                    { name: `${prefix}shortbet|sb [Phrase a bet]`, value: `A bet that lasts around 5 minutes`}
                 )
 
         messageCreate.channel.send({embeds: [newEmbed]});

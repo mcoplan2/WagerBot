@@ -9,7 +9,7 @@ module.exports = {
     //TODO Deathmatch ? 1v1 against someone
     // TODO LEADERBOARD
     name: "leaderboard",
-    aliases: ['ladder', 'top', 'lb'],
+    aliases: ['ladder', 'top'],
     cooldown: 10,
     permissions: [],
     description: "Check the leaderboard",

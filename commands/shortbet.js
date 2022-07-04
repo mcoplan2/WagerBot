@@ -2,8 +2,8 @@ const profileModel = require('../models/profileSchema');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: "free for all",
-    aliases: ["ffa"],
+    name: "longbet",
+    aliases: ["lb"],
     permissions: [],
     cooldown: 10,
     description: "Free for all against everyone that enters!",
@@ -47,7 +47,7 @@ module.exports = {
                 { name: 'Rules:', value: 'One entry allowed'+'\n'
                                         +'Multiple entries will be disqualified'},
             )
-            .setFooter({ text: 'Token Cost: 100               Time Limit: 3 minutes to enter' })
+            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 3 minutes to enter   |   Duration: 5 minutes' })
 
         const newEmbed2 = new MessageEmbed()
             .setColor(0x00FFFF)
@@ -58,7 +58,7 @@ module.exports = {
 
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 60000});
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000});
         collector.on("collect", async (i) => {
             await i.reply(`A user entered the bet, they chose ${i.customId}!`);
         })
@@ -89,11 +89,11 @@ module.exports = {
             const yes_users_no_dups = getDifference(set1, set2);
             const no_users_no_dups = getDifference(set2, set1);
 
-            // ADD 30M WAIT TIMER HERE
+            // ADD 5M WAIT TIMER HERE
             // WE WANT TO WAIT THE "BET" TO END SO THE USER CAN SELECT THEIR RESULT
             // COULD REFACTOR TO IMPLEMENT SOMEONE SENDING A REQUEST WITH THE ANSWER
-            
-            await sleep(1800000)
+
+            await sleep(360000)
             function sleep(ms) {
                 return new Promise(async(resolve) => {
                     setTimeout(resolve, ms);
@@ -103,7 +103,7 @@ module.exports = {
             // Create Another Embed after the above ends to pass in the result of if they won or lost.
             let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row]})
             const filter = i => ((i.customId === "yes") || (i.customId === "no"))
-            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 60000})
+            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 120000})
             collector2.on("collect", async (i) => {
                 row.components[0].setDisabled(true);
                 row.components[1].setDisabled(true);
