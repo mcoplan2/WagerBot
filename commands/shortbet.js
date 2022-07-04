@@ -50,7 +50,7 @@ module.exports = {
                 { name: 'Rules:', value: 'One entry allowed'+'\n'
                                         +'Multiple entries will be disqualified'},
             )
-            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 3 minutes to enter   |   Duration: 5 minutes' })
+            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 30 seconds to enter   |   Duration: 5 minutes' })
 
         const newEmbed2 = new MessageEmbed()
             .setColor(0x00FFFF)
@@ -61,7 +61,7 @@ module.exports = {
 
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000});
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 30000});
         collector.on("collect", async (i) => {
             await i.reply(`A user selected ${i.customId} on this bet.`);
         })
