@@ -30,7 +30,7 @@ module.exports = async (client, messageCreate, interaction) => {
     const cmd = args.shift().toLowerCase();
 
     const command = client.commands.get(cmd) || client.commands.find((a) => a.aliases && a.aliases.includes(cmd));
-    if(!command) return messageCreate.channel.send("This command doesn't exist - use !commands to see a list of commands");
+    if(!command) return messageCreate.channel.send(`This command doesn't exist - use ${prefix}commands to see a list of commands`);
 
     if(!cooldowns.has(command.name)) {
         cooldowns.set(command.name, new Collection());
