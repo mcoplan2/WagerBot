@@ -42,6 +42,9 @@ module.exports = {
         newstring = "**Will "+string+'**';
         newstring2 = "Did "+string;
 
+
+        let count =0;
+
                 
         const newEmbed = new MessageEmbed()
             .setColor(0x00FFFF)
