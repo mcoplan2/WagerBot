@@ -47,7 +47,7 @@ module.exports = async (client, messageCreate, interaction) => {
             const time_left = (expiration_time - current_time) / 1000;
 
             if (time_left > 3600) {
-                const time_left2 = time_left/36000;
+                const time_left2 = time_left/3600;
                 return messageCreate.reply(`Please wait ${time_left2.toFixed(1)} more hours before using ${command.name}`);
             }
             
