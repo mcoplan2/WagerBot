@@ -30,6 +30,7 @@ module.exports = {
                 }
                 
                 // If there is not 5 users in the database do not display a leaderboard. 
+                // TODO JUST LOOP WITH THE LENGTH SO IT CAN BE A DYNAMIC LEADERBOARD INSTEAD OF FIXED AT 5
                 const size = Array.from(result).length;
                 if (size >= 5) {
 
@@ -55,9 +56,9 @@ module.exports = {
                     .addFields(
                         { name: `1) ${number1.user.username}`, value: `Total: ${token1}`},
                         { name: `2) ${number2.user.username}`, value: `Total: ${token2}`},
-                        { name: `1) ${number3.user.username}`, value: `Total: ${token3}`},
-                        { name: `2) ${number4.user.username}`, value: `Total: ${token4}`},
-                        { name: `1) ${number5.user.username}`, value: `Total: ${token5}`},
+                        { name: `3) ${number3.user.username}`, value: `Total: ${token3}`},
+                        { name: `4) ${number4.user.username}`, value: `Total: ${token4}`},
+                        { name: `5) ${number5.user.username}`, value: `Total: ${token5}`},
                     )
                     .setTimestamp()
                     .setFooter({text: "***Includes tokens and bank together***"})
