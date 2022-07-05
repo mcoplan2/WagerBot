@@ -69,7 +69,7 @@ module.exports = {
 
         collector.on("collect", async (i) => {
             await i.deferUpdate();
-            await message3.edit(`${++count} people entered the bet, <@&${role_id}>`);
+            await message3.edit(`${++count} person(s) entered the bet, <@&${role_id}>`);
         })
 
         const yes_users = new Set();
