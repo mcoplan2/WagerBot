@@ -50,7 +50,6 @@ module.exports = {
             .addFields(
                 { name: 'Rules:', value: 'One entry allowed'+'\n'
                                         +'Multiple entries will be disqualified'},
-                { name: 'Entries: ', value: `${count}`}
             )
             .setFooter({ text: 'Token Cost: 100    |   Time Limit: 2 minutes to enter   |   Duration: 5 minutes' })
 
