@@ -1,5 +1,5 @@
 const profileModel = require('../models/profileSchema');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { MessageActionRow, MessageButton, MessageEmbed, MessageSelectMenu } = require('discord.js');
 require('dotenv').config();
 
 module.exports = {
@@ -42,13 +42,15 @@ module.exports = {
         newstring = "**Will "+string+'**';
         newstring2 = "Did "+string;
 
-                
+        let count =0;
+
         const newEmbed = new MessageEmbed()
             .setColor(0x00FFFF)
             .setDescription(newstring)
             .addFields(
                 { name: 'Rules:', value: 'One entry allowed'+'\n'
                                         +'Multiple entries will be disqualified'},
+                { name: 'Entries: ', value: `${count}`}
             )
             .setFooter({ text: 'Token Cost: 100    |   Time Limit: 30 seconds to enter   |   Duration: 5 minutes' })
 
@@ -61,24 +63,15 @@ module.exports = {
         
         let messageEmbed = await messageCreate.channel.send({embeds: [newEmbed], components: [row]});
 
-
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
         const collector = messageEmbed.createMessageComponentCollector({ filter, time: 30000});
+        const message3 = await messageCreate.channel.send(`${count} entered the bet`);
+
+        console.log(message3);
+
         collector.on("collect", async (i) => {
-            let count =0;
-
-            const newEmbededit = new MessageEmbed()
-            .setColor(0x00FFFF)
-            .setDescription(newstring)
-            .addFields(
-                { name: 'Rules: ', value: 'One entry allowed'+'\n'
-                                        +'Multiple entries will be disqualified'},
-                { name: 'Entries: ', value: `${count}`}
-                )
-            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 30 seconds to enter   |   Duration: 5 minutes' })
-
-            messageEmbed.edit({ embeds: newEmbededit })
-            //await i.reply(`A user selected ${i.customId} on this bet.`);
+            await i.deferUpdate();
+            await message3.edit(`${++count} entered the bet`);
         })
 
         const yes_users = new Set();
