@@ -52,6 +52,8 @@ module.exports = {
             )
             .setFooter({ text: 'Token Cost: 100    |   Time Limit: 30 seconds to enter   |   Duration: 5 minutes' })
 
+    
+
         const newEmbed2 = new MessageEmbed()
             .setColor(0x00FFFF)
             .setTitle("Choose the result")
@@ -63,8 +65,20 @@ module.exports = {
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
         const collector = messageEmbed.createMessageComponentCollector({ filter, time: 30000});
         collector.on("collect", async (i) => {
+            let count =0;
+
+            const newEmbededit = new MessageEmbed()
+            .setColor(0x00FFFF)
+            .setDescription(newstring)
+            .addFields(
+                { name: 'Rules: ', value: 'One entry allowed'+'\n'
+                                        +'Multiple entries will be disqualified'},
+                { name: 'Entries: ', value: `${count}`}
+                )
+            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 30 seconds to enter   |   Duration: 5 minutes' })
+
+            messageEmbed.edit({ embeds: newEmbededit })
             //await i.reply(`A user selected ${i.customId} on this bet.`);
-            console.log("test");
         })
 
         const yes_users = new Set();
