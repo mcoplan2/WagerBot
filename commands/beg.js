@@ -7,7 +7,7 @@ module.exports = {
     name: "beg",
     aliases: [],
     permissions: [],
-    cooldown: 864000,
+    cooldown: 86400,
     description: "Beg for more tokens",
     async execute(messageCreate, args, cmd, client, profileData) {
 
