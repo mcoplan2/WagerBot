@@ -132,7 +132,7 @@ module.exports = {
                             let total_amount = 100 * all_entries;
                             let size = yes_users_no_dups.size;
                             let realamount = parseInt(total_amount / size);
-                            if (realamount == 100) realamount = 0;
+                            if (realamount == 100) realamount = 50;
                             await profileModel.findOneAndUpdate({
                                 userID: user,
                             }, {
@@ -167,7 +167,7 @@ module.exports = {
                                 let size = no_users_no_dups.size;
                                 let realamount = parseInt(total_amount / size);
                                 // this means
-                                if (realamount == 100) realamount = 0;
+                                if (realamount == 100) realamount = 50;
                                 await profileModel.findOneAndUpdate({
                                     userID: user,
                                 }, {
