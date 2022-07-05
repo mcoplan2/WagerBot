@@ -39,8 +39,8 @@ module.exports = {
                     .setStyle('DANGER')
             );
     
-        newstring = "**Will "+string+'**';
-        newstring2 = "Did "+string;
+        newstring = "**"+string+"**";
+        newstring2 = "**Did "+string+"**";
 
 
         let count =0;
@@ -65,7 +65,7 @@ module.exports = {
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
         const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000});
-        const message3 = await messageCreate.channel.send(`${count} entered the bet`);
+        const message3 = await messageCreate.channel.send(`${count} people entered the bet, @${role_name}`);
 
         collector.on("collect", async (i) => {
             await i.deferUpdate();
