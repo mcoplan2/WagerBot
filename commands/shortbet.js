@@ -64,12 +64,12 @@ module.exports = {
         let messageEmbed = await messageCreate.channel.send({embeds: [newEmbed], components: [row]});
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 120000});
-        const message3 = await messageCreate.channel.send(`${count} people entered the bet, <@&${role_id}>`);
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 100400});
+        const message3 = await messageCreate.channel.send(`${count} entered this bet, <@&${role_id}>`);
 
         collector.on("collect", async (i) => {
             await i.deferUpdate();
-            await message3.edit(`${++count} person(s) entered the bet, <@&${role_id}>`);
+            await message3.edit(`${++count} entered this bet, <@&${role_id}>`);
         })
 
         const yes_users = new Set();
