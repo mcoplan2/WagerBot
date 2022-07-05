@@ -63,7 +63,8 @@ module.exports = {
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
         const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000});
         collector.on("collect", async (i) => {
-            await i.reply(`A user selected ${i.customId} on this bet.`);
+            //await i.reply(`A user selected ${i.customId} on this bet.`);
+            console.log("test");
         })
 
         const yes_users = new Set();
@@ -106,7 +107,7 @@ module.exports = {
             // Create Another Embed after the above ends to pass in the result of if they won or lost.
             let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row]})
             const filter = i => ((i.customId === "yes") || (i.customId === "no"))
-            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, time: 60000})
+            const collector2 = messageEmbed2.createMessageComponentCollector({ filter, max: 1})
             collector2.on("collect", async (i) => {
                 row.components[0].setDisabled(true);
                 row.components[1].setDisabled(true);
