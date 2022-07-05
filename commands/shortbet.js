@@ -52,7 +52,7 @@ module.exports = {
                                         +'Multiple entries will be disqualified'},
                 { name: 'Entries: ', value: `${count}`}
             )
-            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 30 seconds to enter   |   Duration: 5 minutes' })
+            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 2 minutes to enter   |   Duration: 5 minutes' })
 
     
 
@@ -65,7 +65,7 @@ module.exports = {
         let messageEmbed = await messageCreate.channel.send({embeds: [newEmbed], components: [row]});
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 30000});
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 120000});
         const message3 = await messageCreate.channel.send(`${count} people entered the bet, <@&${role_id}>`);
 
         collector.on("collect", async (i) => {

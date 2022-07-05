@@ -53,7 +53,7 @@ module.exports = {
                 { name: 'Rules:', value: 'One entry allowed'+'\n'
                                         +'Multiple entries will be disqualified'},
             )
-            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 3 minutes to enter   |   Duration: 30 minutes' })
+            .setFooter({ text: 'Token Cost: 100    |   Time Limit: 5 minutes to enter   |   Duration: 30 minutes' })
 
         const newEmbed2 = new MessageEmbed()
             .setColor(0x00FFFF)
@@ -64,7 +64,7 @@ module.exports = {
         let role_id = 993551232910241853n;
 
         const filter = i => ((i.customId === "yes") || (i.customId === "no"));
-        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 180000});
+        const collector = messageEmbed.createMessageComponentCollector({ filter, time: 270000});
         const message3 = await messageCreate.channel.send(`${count} people entered the bet, <@&${role_id}>`);
 
         collector.on("collect", async (i) => {
