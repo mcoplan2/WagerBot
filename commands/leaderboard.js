@@ -61,7 +61,7 @@ module.exports = {
                         { name: `5) ${number5.user.username}`, value: `Total: ${token5}`},
                     )
                     .setTimestamp()
-                    .setFooter({text: "***Includes tokens and bank together***"})
+                    .setFooter({text: `***Includes tokens and bank together***`})
 
 
                     messageCreate.channel.send({embeds: [newEmbed]});
