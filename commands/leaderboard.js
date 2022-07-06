@@ -25,7 +25,7 @@ module.exports = {
 
         // recieve the top 5 users
         try {
-            db.getCollection("profilemodels").aggregate([
+            db.collection("profilemodels").aggregate([
                 { $project: 
                     {
                         'tokens' : '$tokens',
@@ -34,8 +34,8 @@ module.exports = {
                      }
                 },
                 { $sort: { 'total' : -1 } },
-                { $limit: 5}]).toArray(function(err, result) {
-                
+                { $limit: 5}
+]).toArray(function(err, result) {
                 if(err) { 
                     console.log(err)
                 }
@@ -61,7 +61,7 @@ module.exports = {
                     let token5 = Array.from(result)[4].tokens + Array.from(result)[4].bank;
                 
 
-                    // make embed, then loop through array and add field with length.
+                    // make embed, then loop through array and add field with
                     const newEmbed = new MessageEmbed()
                     .setColor(0x00FFFF)
                     .setDescription("Leaderboard - Top 5")
