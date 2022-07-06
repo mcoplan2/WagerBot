@@ -1,7 +1,7 @@
 const profileModel = require('../models/profileSchema');
 
 async function updateTokens(userid, tokenAmount) {
-    profileModel.findOneAndUpdate({
+    await profileModel.findOneAndUpdate({
         userID: userid,
     }, {
         $inc: {

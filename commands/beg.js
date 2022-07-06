@@ -20,9 +20,9 @@ module.exports = {
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
 
-            const randomNumber = Math.floor(Math.random() * 300) + 1
+            const randomNumber = Math.floor(Math.random() * 300) + 1;
 
-            await updateTokens(messageCreate.author.id, randomNumber)
+            await updateTokens(messageCreate.author.id, randomNumber);
 
             return messageCreate.channel.send({embeds: [new MessageEmbed()
                                 .setColor(0x00FFFF)
