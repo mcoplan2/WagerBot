@@ -6,9 +6,8 @@ const mongoose = require('mongoose');
 
 client.commands = new Collection();
 client.events = new Collection();
-client.buttons = new Collection();
 
-['command_handler', 'event_handler', 'button_handler'].forEach(handler => {
+['command_handler', 'event_handler'].forEach(handler => {
     require(`./handlers/${handler}`)(client)
 })
 

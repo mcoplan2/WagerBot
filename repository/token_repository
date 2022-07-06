@@ -1,0 +1,23 @@
+const profileModel = require('../models/profileSchema');
+
+async function updateTokens(userid, tokenAmount) {
+    profileModel.findOneAndUpdate({
+        userID: userid,
+    }, {
+        $inc: {
+            tokens: tokenAmount
+        },
+    });
+}
+
+async function updateTokensAndBank(userid, tokenAmount, bankAmount) {
+    await profileModel.findOneAndUpdate({
+        userID: userid,
+    }, {
+        $inc: {
+            tokens: tokenAmount,
+            bank: bankAmount,
+        },
+    });
+}
+module.exports = {updateTokens, updateTokensAndBank};

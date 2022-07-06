@@ -16,6 +16,7 @@ module.exports = {
     async execute(messageCreate, args, cmd, client, profileData) {
 
         const role_name = process.env.ROLE_NAME;
+        const prefix = process.env.PREFIX;
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
@@ -74,7 +75,7 @@ module.exports = {
             }
         
         } else {
-            messageCreate.channel.send("You need to !register before using this bot.");
+            messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
     }
 }

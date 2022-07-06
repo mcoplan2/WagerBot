@@ -1,5 +1,6 @@
 const profileModel = require('../models/profileSchema');
 const { MessageEmbed } = require('discord.js');
+const { updateTokensAndBank } = require('../repository/token_repository');
 require('dotenv').config();
 
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
     async execute(messageCreate, args, cmd, client, profileData) {
 
         const role_name = process.env.ROLE_NAME;
+        const prefix = process.env.PREFIX;
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
@@ -21,30 +23,20 @@ module.exports = {
 
             try {
                 if (amount > profileData.tokens) return messageCreate.channel.send("Nice try! You don't have that amount of tokens to deposit.");
-                await profileModel.findOneAndUpdate({
-                    userID: messageCreate.author.id,
+
+                await updateTokensAndBank(messageCreate.author.id, -amount, amount);
                 
-                }, {
-                    $inc: {
-                        tokens: -amount,
-                        bank: amount,
-                    },
-                });
-
-                const newEmbed = new MessageEmbed()
-                .setColor(0x00FFFF)
-                .setAuthor({ name: `${messageCreate.author.username}'s Deposit Slip`, iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
-                .addFields(
-                    { name: 'Deposited: ', value: `${amount}`, inline: true },
-                )
-                .setTimestamp()
-
-                return messageCreate.channel.send({embeds: [newEmbed]});
+                return messageCreate.channel.send({embeds: [new MessageEmbed()
+                                    .setColor(0x00FFFF)
+                                    .setAuthor({ name: `${messageCreate.author.username}'s Deposit Slip`, 
+                                                iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
+                                    .addFields({ name: 'Deposited: ', value: `${amount}`, inline: true },)
+                                    .setTimestamp()]});
             } catch(err){
-                console.log(err)
+                console.log(err);
             }
         } else {
-            messageCreate.channel.send("You need to !register before using this bot.")
+            messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
     }   
 }
