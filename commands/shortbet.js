@@ -15,7 +15,7 @@ module.exports = {
         // grab the role
         const role_name = process.env.ROLE_NAME;
         const prefix = process.env.PREFIX;
-        
+
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
         // check if the user has the role before allowing them to use the command
@@ -34,8 +34,6 @@ module.exports = {
             newstring = "**"+string+"**";
             newstring2 = "Did "+string+"";
             let count = 0;
-            const yes_users = new Set();
-            const no_users = new Set();
         
             // Create button and embed objects
             const row = new MessageActionRow()
@@ -90,6 +88,8 @@ module.exports = {
                 await message3.edit(`${++count} entered this bet, <@&${role_id}>`);
             })
 
+            const yes_users = new Set();
+            const no_users = new Set();
             // Add each user to a Set based on which button they pressed and disable the buttons as the event has ended
             collector.on("end", async (collected) => {
                 collected.forEach( async (value) => {

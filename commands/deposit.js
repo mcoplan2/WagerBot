@@ -19,11 +19,12 @@ module.exports = {
         // check if the user has the role before allowing them to use the command
         if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
             const amount = args[0];
-            if (amount % 1 != 0 || amount <= 0) return messageCreate.channel.send("Deposit amount must be a whole number.");
+            if (amount % 1 != 0 || amount <= 0) return messageCreate.channel.send("Deposit amount must be a natural number.");
 
             try {
-                if (amount > profileData.tokens) return messageCreate.channel.send("Nice try! You don't have that amount of tokens to deposit.");
-
+                if (amount > profileData.tokens) return messageCreate.channel.send("You don't have that amount of tokens to deposit.");
+                
+                // update the users tokens and return the embed with their information.
                 await updateTokensAndBank(messageCreate.author.id, -amount, amount);
                 
                 return messageCreate.channel.send({embeds: [new MessageEmbed()
