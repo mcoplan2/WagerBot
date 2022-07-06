@@ -12,10 +12,10 @@ module.exports = {
     description: "A bet that lasts around 5 minutes",
     async execute(messageCreate, interaction, args, cmd, client, profileData) {
 
-        // grab the role
         const role_name = process.env.ROLE_NAME;
         const prefix = process.env.PREFIX;
 
+         // grab the role
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
         // check if the user has the role before allowing them to use the command
@@ -23,7 +23,7 @@ module.exports = {
 
             // Grab the string of the entire command
             // {!ffa String here}
-            message = await messageCreate.fetch();
+            let message = await messageCreate.fetch();
 
             // Remove the command from the string
             // !ffa { keeps this part }
@@ -31,8 +31,8 @@ module.exports = {
 
             // Intialize cariables and objects
             let role_id = 993551232910241853n;
-            newstring = "**"+string+"**";
-            newstring2 = "Did "+string+"";
+            let newstring = "**"+string+"**";
+            let newstring2 = "Did "+string+"";
             let count = 0;
         
             // Create button and embed objects
@@ -109,8 +109,6 @@ module.exports = {
                 // we will remove both these results since you should only be allowed to choose one option.
                 const yes_users_no_dups = getDifference(yes_users, no_users);
                 const no_users_no_dups = getDifference(no_users, yes_users);
-                console.log(yes_users_no_dups);
-                console.log(no_users_no_dups);
                 
                 // Duration of the bet, Currently 5m, change this value to increase/decrease duration
                 await sleep(360000);
@@ -175,10 +173,9 @@ module.exports = {
                 })
             }
         )
-
-    } else {
+        } else {
             return messageCreate.channel.send(`You need to ${prefix}register before using this bot.`)
-    }
+        }
         
     },
 }
