@@ -20,9 +20,8 @@ module.exports = {
         const server_id = process.env.SERVER_ID;
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
-
         // check if the user has the role before allowing them to use the command
-        if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
+        if(messageCreate.member.roles.cache.has(eligibleRole.id) && messageCreate.guild.id == server_id) {
 
         // recieve the top 5 users
         try {
