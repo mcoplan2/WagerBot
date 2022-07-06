@@ -4,7 +4,7 @@ async function getDifference(setA, setB) {
     );
 }
 
-function sleep(ms) {
+async function sleep(ms) {
     return new Promise(async(resolve) => {
         setTimeout(resolve, ms);
     });
