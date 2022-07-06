@@ -17,6 +17,7 @@ module.exports = {
 
         const role_name = process.env.ROLE_NAME;
         const prefix = process.env.PREFIX;
+        const server_id = process.env.SERVER_ID;
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
@@ -28,6 +29,8 @@ module.exports = {
             db.collection("profilemodels").aggregate([
                 { $project: 
                     {
+                        'userID' : '$userID',
+                        'serverID' : `${server_id}`,
                         'tokens' : '$tokens',
                         'bank' : '$bank',
                         'total' : { '$add' : ['$tokens' , '$bank' ]}
