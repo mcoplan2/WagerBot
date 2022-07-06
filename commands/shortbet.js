@@ -109,6 +109,8 @@ module.exports = {
                 // we will remove both these results since you should only be allowed to choose one option.
                 const yes_users_no_dups = getDifference(yes_users, no_users);
                 const no_users_no_dups = getDifference(no_users, yes_users);
+                console.log(yes_users_no_dups);
+                console.log(no_users_no_dups);
                 
                 // Duration of the bet, Currently 5m, change this value to increase/decrease duration
                 await sleep(360000);
