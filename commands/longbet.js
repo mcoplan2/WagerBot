@@ -38,6 +38,20 @@ module.exports = {
 					.setLabel('No')
                     .setStyle('DANGER')
             );
+        
+        const row2 = new MessageActionRow()
+			.addComponents(
+				new MessageButton()
+					.setCustomId('yes')
+					.setLabel('Yes')
+					.setStyle('SUCCESS'),    
+			)
+			.addComponents(
+				new MessageButton()
+					.setCustomId('no')
+					.setLabel('No')
+                    .setStyle('DANGER')
+            );
     
         newstring = "**"+string+"**";
         newstring2 = "**Did "+string+"**";
@@ -83,6 +97,9 @@ module.exports = {
                 else if(value.customId === "no") {
                     no_users.add(value.user.id);
                 }
+                row.components[0].setDisabled(true);
+                row.components[1].setDisabled(true);
+                await messageEmbed.edit({embeds: [newEmbed], components: [row]});
             })
 
             // function to remove duplicates from each set incase they tried to enter both a 'Yes' and 'No' response
@@ -110,13 +127,13 @@ module.exports = {
             }
             // THIS SECTION IS THE 2nd PART WHERE THE USER SELECTS THEIR RESULT FROM THE BET
             // Create Another Embed after the above ends to pass in the result of if they won or lost.
-            let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row]})
+            let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row2]})
             const filter = i => ((i.customId === "yes") || (i.customId === "no"))
             const collector2 = messageEmbed2.createMessageComponentCollector({ filter, max: 1})
             collector2.on("collect", async (i) => {
-                row.components[0].setDisabled(true);
-                row.components[1].setDisabled(true);
-                messageEmbed2.edit({embeds: [newEmbed2], components: [row]});
+                row2.components[0].setDisabled(true);
+                row2.components[1].setDisabled(true);
+                messageEmbed2.edit({embeds: [newEmbed2], components: [row2]});
                 await i.reply(`${i.user.username} clicked on the ${i.customId} button.`);
             })
             
