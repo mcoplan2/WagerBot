@@ -1,4 +1,4 @@
-async function getDifference(setA, setB) {
+function getDifference(setA, setB) {
     return new Set(
         [...setA].filter(element => !setB.has(element))
     );
