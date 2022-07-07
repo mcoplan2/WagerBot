@@ -21,9 +21,6 @@ module.exports = {
 
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
         // check if the user has the role before allowing them to use the command
-
-        console.log(messageCreate.guild.id);
-        console.log(server_id);
         if(messageCreate.member.roles.cache.has(eligibleRole.id) && messageCreate.guild.id == server_id) {
 
         // recieve the top 5 users
@@ -39,14 +36,13 @@ module.exports = {
                      }
                 },
                 { $sort: { 'total' : -1 } },
-                { $limit: 5}
-]).toArray(function(err, result) {
+                { $limit: 5}]).toArray(function(err, result) {
+
                 if(err) { 
                     console.log(err)
                 }
                 
                 // If there is not 5 users in the database do not display a leaderboard. 
-                // TODO JUST LOOP WITH THE LENGTH SO IT CAN BE A DYNAMIC LEADERBOARD INSTEAD OF FIXED AT 5
                 const size = Array.from(result).length;
                 if (size >= 5) {
 
