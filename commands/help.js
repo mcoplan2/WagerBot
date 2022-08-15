@@ -22,7 +22,7 @@ module.exports = {
                     { name: `${prefix}leaderboard|top`, value: `Displays the users with the most tokens`},
                     { name: `${prefix}beg`, value: `Daily cooldown the user can use to generate a random number of tokens`},
                     { name: `${prefix}longbet|lb [Phrase a bet]`, value: `A bet that lasts around 30 minutes[100 tokens]`},
-                    { name: `${prefix}shortbet|sb [Phrase a bet]`, value: `A bet that lasts around 5 minutes[100 tokens]`}
+                    { name: `${prefix}shortbet|sb [Phrase a bet]`, value: `A bet that lasts around 5 minutes[100 tokens]`},
                     { name: `${prefix}longbet500|lb500 [Phrase a bet]`, value: `A bet that lasts around 30 minutes[500 tokens]`},
                     { name: `${prefix}shortbet500|sb500 [Phrase a bet]`, value: `A bet that lasts around 5 minutes[500 tokens]`}
                 )
