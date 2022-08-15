@@ -75,9 +75,13 @@ module.exports = {
                 .setDescription(newstring2)
         
             let messageEmbed = await messageCreate.channel.send({embeds: [newEmbed], components: [row]});
-
+            
             const filter = i => ((i.customId === "yes") || (i.customId === "no"));
             const collector = messageEmbed.createMessageComponentCollector({ filter, time: 270000});
+            if(messageEmbed) {
+                // GET TOKEN AMOUNT HERE
+                // NEED TO ONLY GIVE EMBED TO USER WHO ENTERED
+            }
             const message3 = await messageCreate.channel.send(`${count} entered this bet, <@&${role_id}>`);
 
             collector.on("collect", async (i) => {

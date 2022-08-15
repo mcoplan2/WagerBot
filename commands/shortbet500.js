@@ -5,8 +5,8 @@ const { updateTokens } = require('../repository/token_repository');
 require('dotenv').config();
 
 module.exports = {
-    name: "shortbet",
-    aliases: ["sb"],
+    name: "shortbet500",
+    aliases: ["sb500"],
     permissions: [],
     cooldown: 10,
     description: "A bet that lasts around 5 minutes",
@@ -68,7 +68,7 @@ module.exports = {
                 .setColor(0x00FFFF)
                 .setDescription(newstring)
                 .addFields({ name: 'Rules:', value: 'One entry allowed\nMultiple entries will be disqualified'},)
-                .setFooter({ text: 'Token Cost: 100    |   Time Limit: 1 minute to enter   |   Duration: 5 minutes' })
+                .setFooter({ text: 'Token Cost: 500    |   Time Limit: 1 minute to enter   |   Duration: 5 minutes' })
 
             const newEmbed2 = new MessageEmbed()
                 .setColor(0x00FFFF)
@@ -131,17 +131,17 @@ module.exports = {
                             try {
                                 yes_users_no_dups.forEach( async (user) => {
                                     let all_entries = yes_users_no_dups.size + no_users_no_dups.size;
-                                    let total_amount = 100 * all_entries;
+                                    let total_amount = 500 * all_entries;
                                     let size = yes_users_no_dups.size;
                                     let realamount = parseInt(total_amount / size);
-                                    if (realamount == 100) realamount = 50;
+                                    if (realamount == 500) realamount = 250;
                                 
                                     await updateTokens(user, realamount);
                                 })
 
                                 no_users_no_dups.forEach( async (user) => {
                                     // If they lose, just subtract 100 from their total
-                                    let amount = 100;
+                                    let amount = 500;
 
                                     await updateTokens(user, -amount);
                                 })
@@ -152,17 +152,17 @@ module.exports = {
                             try {
                                 no_users_no_dups.forEach( async (user) => {
                                     let all_entries = yes_users_no_dups.size + no_users_no_dups.size;
-                                    let total_amount = 100 * all_entries;
+                                    let total_amount = 500 * all_entries;
                                     let size = no_users_no_dups.size;
                                     let realamount = parseInt(total_amount / size);
-                                    if (realamount == 100) realamount = 50;
+                                    if (realamount == 500) realamount = 250;
 
                                     await updateTokens(user, realamount);
                                 })
 
                                 yes_users_no_dups.forEach( async (user) => {
                                     // If they lose, just subtract 100 from their total
-                                    let amount = 100;
+                                    let amount = 500;
                                     await updateTokens(user, -amount);
                                 })
                             } catch (err) {
