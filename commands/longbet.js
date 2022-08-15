@@ -32,7 +32,7 @@ module.exports = {
             // Intialize cariables and objects
             let role_id = 993551232910241853n;
             let newstring = "**"+string+"**";
-            let newstring2 = "Did "+string+"";
+            let newstring2 = ""+string+"";
             let count = 0;
 
             const row = new MessageActionRow()
@@ -70,7 +70,7 @@ module.exports = {
                 .setFooter({ text: 'Token Cost: 100    |   Time Limit: 5 minutes to enter   |   Duration: 30 minutes' })
 
             const newEmbed2 = new MessageEmbed()
-                .setColor(0x00FFFF)
+                .setColor(0xFF0000)
                 .setTitle("Choose the result")
                 .setDescription(newstring2)
         
