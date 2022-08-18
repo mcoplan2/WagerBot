@@ -143,7 +143,7 @@ module.exports = {
 
                             no_users_no_dups.forEach( async (user) => {
                                 // If they lose, just subtract 100 from their total
-                                let amount = 100;
+                                let amount = 500;
                                 await updateTokens(user, -amount);
                             })
                         } catch(err) {
