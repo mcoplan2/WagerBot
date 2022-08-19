@@ -18,20 +18,18 @@ module.exports = {
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
         // check if the user has the role before allowing them to use the command
-        if(messageCreate.member.roles.cache.has(eligibleRole.id)) {
-
-            const randomNumber = Math.floor(Math.random() * 300) + 1;
-
-            await updateTokens(messageCreate.author.id, randomNumber);
-
-            return messageCreate.channel.send({embeds: [new MessageEmbed()
-                                .setColor(0x00FFFF)
-                                .setAuthor({ name: `${messageCreate.author.username}`, 
-                                            iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
-                                .setDescription(`${messageCreate.author.username}, you recieved ${randomNumber} **tokens**!`)
-                                .setTimestamp()]});
-        } else {
-            messageCreate.channel.send(`You need to ${prefix}register before using this bot.`)
+        if(!messageCreate.member.roles.cache.has(eligibleRole.id)) {
+            return messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
+        const randomNumber = Math.floor(Math.random() * 300) + 1;
+
+        await updateTokens(messageCreate.author.id, randomNumber);
+
+        return messageCreate.channel.send({embeds: [new MessageEmbed()
+                            .setColor(0x00FFFF)
+                            .setAuthor({ name: `${messageCreate.author.username}`, 
+                                        iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
+                            .setDescription(`${messageCreate.author.username}, you recieved ${randomNumber} **tokens**!`)
+                            .setTimestamp()]});
     }
 };

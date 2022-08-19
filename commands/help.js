@@ -7,7 +7,7 @@ module.exports = {
     permissions: [],
     cooldown: 60,
     description: "displays a list of commands for the user",
-    async execute(messageCreate, args, cmd, client, profileData) {
+    async execute(messageCreate) {
 
         const prefix = process.env.PREFIX;
 

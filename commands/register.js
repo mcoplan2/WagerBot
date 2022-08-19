@@ -5,7 +5,7 @@ module.exports = {
     name: 'register',
     cooldown: 30,
     description: 'allows user to be eligible to earn tokens and participate in events',
-    async execute(messageCreate, client, args, profileData) {
+    async execute(messageCreate) {
         const file = new MessageAttachment("./index.jpg")
 
         const role_name = process.env.ROLE_NAME;
