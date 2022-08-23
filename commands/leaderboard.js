@@ -3,11 +3,9 @@ const { MessageEmbed } = require('discord.js');
 const { db } = require('../models/profileSchema');
 require('dotenv').config();
 
-
-
+// TODO:
+// Make it so it only displays users on your server.
 module.exports = {
-    //TODO Deathmatch ? 1v1 against someone
-    // TODO LEADERBOARD
     name: "leaderboard",
     aliases: ['ladder', 'top'],
     cooldown: 10,
@@ -61,7 +59,6 @@ module.exports = {
                     let token4 = Array.from(result)[3].tokens + Array.from(result)[3].bank;
                     let token5 = Array.from(result)[4].tokens + Array.from(result)[4].bank;
                 
-
                     // make embed, then loop through array and add field with
                     const newEmbed = new MessageEmbed()
                     .setColor(0x00FFFF)
