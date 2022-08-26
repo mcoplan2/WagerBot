@@ -1,6 +1,7 @@
 const profileModel = require('../models/profileSchema');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { updateTokens } = require('../repository/token_repository');
+const { random } = require('lodash');
 require('dotenv').config();
 
 module.exports = {
@@ -22,6 +23,7 @@ module.exports = {
             return messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
         const randomNumber = Math.floor(Math.random() * 300) + 1;
+        if(randomNumber < 50) randomNumber + 52;
 
         await updateTokens(messageCreate.author.id, randomNumber);
 
