@@ -23,7 +23,9 @@ module.exports = {
             return messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
         const randomNumber = Math.floor(Math.random() * 300) + 1;
-        if(randomNumber < 50) randomNumber + 52;
+        if(randomNumber < 50){
+            randomNumber = randomNumber + 52;
+        }
 
         await updateTokens(messageCreate.author.id, randomNumber);
 
