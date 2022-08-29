@@ -10,7 +10,7 @@ module.exports = {
     aliases: ['ladder', 'top'],
     cooldown: 10,
     permissions: [],
-    description: "Check the leaderboard",
+    description: "Check the leaderboard!",
     async execute(messageCreate, args, cmd, client, profileData) {
 
         const role_name = process.env.ROLE_NAME;
