@@ -44,7 +44,7 @@ module.exports = {
         let newstring = "**"+string+"**";
         let newstring2 = ""+string+"";
     
-        if (tokens<0) Math.abs(tokens);
+        if (tokens<0) tokens = Math.abs(tokens);
         // Create button and embed objects
         const row = new MessageActionRow()
             .addComponents(
