@@ -33,7 +33,7 @@ module.exports = {
                         'total' : { '$add' : ['$tokens' , '$bank' ]}
                      }
                 },
-                { $sort: { 'total' : 1 } },
+                { $sort: { 'total' : -1 } },
                 { $limit: 5}]).toArray(function(err, result) {
 
                 if(err) { 
