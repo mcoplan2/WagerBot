@@ -34,14 +34,15 @@ module.exports = {
         const tokenAmount = tokensAndString.split(" ");
 
         // Intialize variables and objects
-        let newstring = "**"+string+"**";
-        let newstring2 = ""+string+"";
         let count = 0;
 
         // If user does not enter a token amount set the include the entire string.
         isNaN(tokenAmount[0]) ? string = tokensAndString : string = string;
         // If user does not enter a token amount set the default to 100.
         isNaN(tokenAmount[0]) ? tokens = 100 : tokens = tokenAmount[0];
+
+        let newstring = "**"+string+"**";
+        let newstring2 = ""+string+"";
     
         // Create button and embed objects
         const row = new MessageActionRow()
