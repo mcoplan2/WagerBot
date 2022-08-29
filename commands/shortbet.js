@@ -5,7 +5,7 @@ require('dotenv').config();
 
 module.exports = {
     name: "shortbet",
-    aliases: ["sb"],
+    aliases: ["sb", "SB", "Sb", "sB"],
     permissions: [],
     cooldown: 10,
     description: "A bet that lasts around 5 minutes",
