@@ -39,9 +39,11 @@ module.exports = {
         isNaN(tokenAmount[0]) ? string = tokensAndString : string = string;
         // If user does not enter a token amount set the default to 100.
         isNaN(tokenAmount[0]) ? tokens = 100 : tokens = tokenAmount[0];
-    
+        
         let newstring = "**"+string+"**";
         let newstring2 = ""+string+"";
+
+        if (tokens<0) Math.abs(tokens);
         // Create button and embed objects
         const row = new MessageActionRow()
             .addComponents(
