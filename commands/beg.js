@@ -22,7 +22,7 @@ module.exports = {
         if(!messageCreate.member.roles.cache.has(eligibleRole.id)) {
             return messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
-        const randomNumber = Math.floor(Math.random() * 300) + 1;
+        let randomNumber = Math.floor(Math.random() * 300) + 1;
         if(randomNumber < 50){
             randomNumber = randomNumber + 52;
         }
