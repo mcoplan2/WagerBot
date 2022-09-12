@@ -27,6 +27,11 @@ module.exports = {
             randomNumber = randomNumber + 52;
         }
 
+        if (randomNumber == 52) {
+            randomNumber = 2000;
+            messageCreate.channel.send(`You have won the jackpot!`);
+        }
+
         await updateTokens(messageCreate.author.id, randomNumber);
 
         return messageCreate.channel.send({embeds: [new MessageEmbed()
