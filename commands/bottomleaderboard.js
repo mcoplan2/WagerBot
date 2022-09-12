@@ -62,7 +62,7 @@ module.exports = {
                     // make embed, then loop through array and add field with
                     const newEmbed = new MessageEmbed()
                     .setColor(0x00FFFF)
-                    .setDescription("Leaderboard - Top 5")
+                    .setDescription("Leaderboard - Bottom 5")
                     .addFields(
                         { name: `1) ${number1.user.username}`, value: `Total: ${token1}`},
                         { name: `2) ${number2.user.username}`, value: `Total: ${token2}`},
