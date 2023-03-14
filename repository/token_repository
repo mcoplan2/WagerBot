@@ -20,4 +20,14 @@ async function updateTokensAndBank(userid, tokenAmount, bankAmount) {
         },
     });
 }
-module.exports = {updateTokens, updateTokensAndBank};
+
+async function updateGP(name, gp) {
+    await profileModel.findOneAndUpdate({
+        name: name,
+    }, {
+        $inc: {
+            gp: gp
+        },
+    });
+}
+module.exports = {updateTokens, updateTokensAndBank, updateGP};

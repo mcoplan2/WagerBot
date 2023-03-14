@@ -42,8 +42,8 @@ module.exports = {
         // If user does not enter a token amount set the default to 100.
         isNaN(tokenAmount[0]) ? tokens = parseInt(100) : tokens = parseInt(tokenAmount[0]);
 
-        if(tokens > 2000) {
-            tokens = 2000;
+        if(tokens > 5000) {
+            tokens = 5000;
         }
 
         let newstring = "**"+string+"**";

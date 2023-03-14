@@ -6,8 +6,8 @@ require('dotenv').config();
 // TODO:
 // Make it so it only displays users on your server.
 module.exports = {
-    name: "bottomleaderboard",
-    aliases: ['botladder', 'bot', 'bottom'],
+    name: "bottomleaderboard2",
+    aliases: ['botladder2', 'bot2', 'bottom2'],
     cooldown: 10,
     permissions: [],
     description: "Check who are at the bottom of the leaderboard!",

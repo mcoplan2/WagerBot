@@ -17,8 +17,10 @@ module.exports = async (client, messageCreate, interaction) => {
             let profile = await profileModel.create({
                 userID: messageCreate.author.id,
                 serverID: messageCreate.guild.id,
+                name: "",
                 tokens: 200,
-                bank: 0
+                bank: 0,
+                gp: 0
             });
             profile.save();
         }
