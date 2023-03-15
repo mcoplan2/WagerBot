@@ -1,4 +1,5 @@
 const profileModel = require('../models/profileSchema');
+const gpModel = require('../models/gpSchema');
 
 async function updateTokens(userid, tokenAmount) {
     await profileModel.findOneAndUpdate({
@@ -22,7 +23,7 @@ async function updateTokensAndBank(userid, tokenAmount, bankAmount) {
 }
 
 async function updateGP(name, gp) {
-    await profileModel.findOneAndUpdate({
+    await gpModel.findOneAndUpdate({
         name: name,
     }, {
         $inc: {
