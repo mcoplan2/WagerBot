@@ -39,11 +39,17 @@ module.exports = {
                     .setTimestamp()
                     .setFooter({text: 'List of GP earned during PK'})
                 const size = Array.from(result).length;
+                let sum = 0;
                 for(i = 0; i < size; i++) {
+                    sum += Array.from(result)[i].gp;
                     newEmbed.addFields(
                         { name: `${i+1}) ${Array.from(result)[i].name}`, value: `${Array.from(result)[i].gp.toLocaleString("en-US")} GP`},
                     )
                 }
+                
+                newEmbed.addFields(
+                    { name: 'Total gold earned: ' , value: `${sum.toLocaleString("en-US")} GP`},
+                )
                 
             
                 messageCreate.channel.send({embeds: [newEmbed]});

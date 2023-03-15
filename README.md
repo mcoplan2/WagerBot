@@ -77,8 +77,6 @@ shortbet - A bet that lasts around 5 minutes
 
 ## Backlog / Upcoming Features
 
-Add Totals to sum up all gold earned
-
 Format output text(report card) of Top 2 and bottom 2 as well as a list of everyone else with total gold earned to PK channel
 
 Make Embed more fancy
