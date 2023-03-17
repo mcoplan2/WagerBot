@@ -85,6 +85,10 @@ Runelite support for plugin to read chat
 
 Pagination support for embeds
 
+clean up code / provide documentation / comments
+
+find a host for the bot so no local host
+
 
 
 

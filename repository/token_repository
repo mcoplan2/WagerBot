@@ -22,6 +22,21 @@ async function updateTokensAndBank(userid, tokenAmount, bankAmount) {
     });
 }
 
+async function createGP(name, gp) {
+    await gpModel.insertMany({
+        name: name,
+        gp: gp
+    })
+
+}
+
+async function findGP(name) {
+    await gpModel.findOne({
+        name: name
+    })
+}
+
+
 async function updateGP(name, gp) {
     await gpModel.findOneAndUpdate({
         name: name,
@@ -31,4 +46,4 @@ async function updateGP(name, gp) {
         },
     });
 }
-module.exports = {updateTokens, updateTokensAndBank, updateGP};
+module.exports = {updateTokens, updateTokensAndBank, updateGP, findGP, createGP};
