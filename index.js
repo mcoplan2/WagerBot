@@ -7,6 +7,12 @@ const { updateLeaderboard } = require('./channels/pkboard');
 const { createGP } = require('./repository/token_repository');
 const { findGP } = require('./repository/token_repository');
 const { updateGP } = require('./repository/token_repository');
+const { db } = require('./models/profileSchema');
+const { getDifference, sleep } = require('./utils/functions');
+
+require("@babel/register")({
+    presets: ["@babel/preset-react"],
+  });
 
 client.commands = new Collection();
 client.events = new Collection();
@@ -68,7 +74,7 @@ client.on('messageCreate', message => {
             
         // Store information in Database
         });
-        collecter.on('end', collected => {
+        collecter.on('end', async collected => {
             const pkReportCardChannelId = "1085620863086379099";
             const pkReportCardChannel = client.channels.cache.get(pkReportCardChannelId);
             
@@ -86,7 +92,11 @@ client.on('messageCreate', message => {
                     i = i+1;
                     // if the user is not in the database create a new document 
                     // else update the document
-                    if (await findGP(key) == null) {
+                    const query = {name: key};
+                    const gpUsers = db.collection("gpmodels");
+                    const gpUser = await gpUsers.findOne(query);
+                    console.log(gpUser);
+                    if (gpUser == null) {
                         await createGP(key, value)
                     } else {
                         await updateGP(key, value);
@@ -97,6 +107,8 @@ client.on('messageCreate', message => {
             console.log("Messages " + collected.size);
             const leaderboardChannelId = '1085554952874774659';
             const leaderboardChannel = client.channels.cache.get(leaderboardChannelId);
+            // give a chance for the database to update before displaying new leaderboard
+            await sleep(120000)
             updateLeaderboard(leaderboardChannel);
             pkers.clear();
         });

@@ -77,13 +77,11 @@ shortbet - A bet that lasts around 5 minutes
 
 ## Backlog / Upcoming Features
 
+fix issue with database not updating ( i.e add wait command and fix database calls )
+
 Format output text(report card) of Top 2 and bottom 2 as well as a list of everyone else with total gold earned to PK channel
 
 Make Embed more fancy
-
-Runelite support for plugin to read chat
-
-Pagination support for embeds
 
 clean up code / provide documentation / comments
 

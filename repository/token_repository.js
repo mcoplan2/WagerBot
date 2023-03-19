@@ -31,9 +31,8 @@ async function createGP(name, gp) {
 }
 
 async function findGP(name) {
-    await gpModel.findOne({
-        name: name
-    })
+    await gpModel.findOne({name: new RegExp('^'+name+'$', "i")}, function(err, doc) {
+      });
 }
 
 

@@ -5,6 +5,6 @@ const gpSchema = new mongoose.Schema({
     gp: { type: Number }
 })
 
-const model = mongoose.model('GPModels', gpSchema)
+const gpmodel = mongoose.model('GPModels', gpSchema)
 
-module.exports = model;
+module.exports = gpmodel;
