@@ -1,90 +1,136 @@
-const { Card, CardContent, Typography, Grid, Paper } = require('@material-ui/core');
+const { Card, CardContent, Typography, Grid, Paper, Box, Stack } = require('@mui/material');
 const { makeStyles, ThemeProvider } = require('@material-ui/styles');
 const { purple } = require('@material-ui/core/colors');
 const React = require('react');
 
 
-const useStyles = makeStyles({
-    paper: {
-      margin: '1rem',
-      padding: '1rem',
-      border: '1px solid black',
-      maxWidth: '25%',
-      '&:hover': {
-        boxShadow: '0 0 11px rgba(33,33,33,.2)'
-      }
-    },
-    topThree: {
-      maxWidth: '33.33%',
-    },
-    playerInfo: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    },
-    playerAvatar: {
-      marginRight: '1rem'
-    },
-    playerName: {
-      fontWeight: 'bold',
-      fontSize: '1.1rem'
-    },
-    playerScore: {
-      fontWeight: 'bold',
-      fontSize: '1.1rem',
-      color: '#f50057'
-    },
-    playerRank: {
-      fontSize: '2rem',
-      color: '#f50057'
-    }
-  });
-
-
 function Pkleaderboard  ( data )  {
-    const classes = useStyles();
     const {players} = data;
     const topThree = players.slice(0, 3);
+    let sum = 0;
+    players.forEach((v) => {
+      sum += v.gp;
+    });
   
     return (
-        <div>
-          <div>
-            <h2>Leaderboard</h2>
-            {topThree.map((player, index) => (
-              <Paper key={player.name} className={`${classes.paper} ${classes.topThree}`}>
-                <div className={classes.playerInfo}>
-                  <div className={classes.playerAvatar}>
-                    <img src={player.avatarUrl} alt={player.name} width={50} height={50} />
-                  </div>
-                  <div>
-                    <div className={classes.playerName}>{player.name}</div>
-                    <div className={classes.playerScore}>{player.gp} GP</div>
-                  </div>
-                  <div className={classes.playerRank}>#{index + 1}</div>
-                </div>
-              </Paper>
-            ))}
-          </div>
-          <div>
-            {players.slice(3).map((player, index) => (
-              <Paper key={player.name} className={classes.paper}>
-                <div className={classes.playerInfo}>
-                  <div className={classes.playerAvatar}>
-                    <img src={player.avatarUrl} alt={player.name} width={50} height={50} />
-                  </div>
-                  <div>
-                    <div className={classes.playerName}>{player.name}</div>
-                    <div className={classes.playerScore}>{player.gp} GP</div>
-                  </div>
-                  <div className={classes.playerRank}>#{index + 4}</div>
-                </div>
-              </Paper>
-            ))}
-          </div>
+      <div>
+        <style>
+          {`
+            body {
+              width: 2600px;
+              height: 2600px;
+            }
+    
+            .container {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              height: 100%;
+              background-color: #313338;
+            }
+    
+            .header {
+              width: 100%;
+              height: 100px;
+              background-color: lightgray;
+              border: 5px cyan;
+              padding: 3px;
+              margin: 3px;
+            }
+    
+            .footer {
+              width: 100%;
+              height: 100px;
+              background-color: lightgray;
+              border: 5px cyan;
+              padding: 3px;
+              margin: 3px;
+            }
+            
+            .player {
+              border: 1px solid white;
+              margin: 3px;
+              padding: 3px;
+              min-height: 175px;
+              background-color: white;
+            }
+    
+            .player-blue {
+              background-color: lightblue;
+            }
+          `}
+        </style>
+        <Box sx={{ backgroundColor: 'white' }}>
+        <div className="container">
+        <div style={{ textAlign: 'center', backgroundColor: '#313338', padding: 0 }}>
+        <Typography variant="h6" align="center" fontSize={128} fontWeight="bold" color="white">
+                PK LEADERBOARD
+        </Typography>
+         </div>
+            <Grid container justifyContent="center">
+              {topThree.map((player, index) => (
+                <Grid item key={player.name} xs={12} lg={4}>
+                  <Paper elevation={24} sx={{ margin:3, minHeight: 175, backgroundColor:
+          index === 0 ? '#fdd800' : index === 1 ? '#dfdfdf' : index === 2 ? '#fd6400' : 'white', padding: 5 }} className="player">
+                    <Grid container direction="column" spacing={5}>
+                      <Grid item>
+                        <Typography variant="h6" align="left" fontSize={74} fontWeight="bold">
+                          #{index + 1}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h5" align="center" fontSize={89} fontWeight="bold">
+                          {player.name}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="body1" align="center" fontSize={74} fontWeight="bold">
+                          {player.gp.toLocaleString('en-US')} GP
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </Grid>
+              ))}
+    
+              {players.slice(3).map((player, index) => (
+                <Grid item key={player.name} xs={3} lg={3}>
+                  <Paper elevation={2} sx={{ margin:3, minHeight: 175, backgroundColor: '#97f4fe', padding: 5 }} className="player player-blue">
+                    <Grid container direction="column"  spacing={1}>
+                      <Grid item>
+                        <Typography variant="h6" align="left" fontSize={62} fontWeight="bold">
+                          #{index + 4}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h5" align="center" fontSize={74} fontWeight="bold">
+                          {player.name}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="body1" align="center" fontSize={62} fontWeight="bold">
+                          {player.gp.toLocaleString('en-US')} GP
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </Grid>
+              ))}
+            </Grid>
+          
+          <div style={{ textAlign: 'center', backgroundColor: '#313338', padding: 10 }}>
+          <Typography variant="h6" align="center" fontSize={92} fontWeight="bold" color="white">
+              Total Gold Earned: {sum.toLocaleString('en-US')} GP
+            </Typography>
+    </div>
         </div>
-      );
-    }
+        </Box>
+      </div>
+      
+    );
+  }
     
 
 module.exports = Pkleaderboard;

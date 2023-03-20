@@ -28,29 +28,25 @@ async function updateLeaderboard(channel) {
         
 
         // make embed, then loop through array and add field with
-        const newEmbed = new MessageEmbed()
-            .setColor(0x00FFFF)
-            .setDescription("Leaderboard - Pker gold earned")
-            .setTimestamp()
-            .setFooter({text: 'List of GP earned during PK'})
-        const size = Array.from(result).length;
-        let sum = 0;
-        for(i = 0; i < size; i++) {
-            sum += Array.from(result)[i].gp;
-            newEmbed.addFields(
-                { name: `${i+1}) ${Array.from(result)[i].name}`, value: `${Array.from(result)[i].gp.toLocaleString("en-US")} GP`},
-            )
-        }
-        newEmbed.addFields(
-            { name: 'Total gold earned: ' , value: `${sum.toLocaleString("en-US")} GP`},
-        )
+        // const newEmbed = new MessageEmbed()
+        //     .setColor(0x00FFFF)
+        //     .setDescription("Leaderboard - Pker gold earned")
+        //     .setTimestamp()
+        //     .setFooter({text: 'List of GP earned during PK'})
+        // const size = Array.from(result).length;
+        // let sum = 0;
+        // for(i = 0; i < size; i++) {
+        //     sum += Array.from(result)[i].gp;
+        //     newEmbed.addFields(
+        //         { name: `${i+1}) ${Array.from(result)[i].name}`, value: `${Array.from(result)[i].gp.toLocaleString("en-US")} GP`},
+        //     )
+        // }
+        // newEmbed.addFields(
+        //     { name: 'Total gold earned: ' , value: `${sum.toLocaleString("en-US")} GP`},
+        // )
 
         
-        const messages = await channel.messages.fetch({limit:100})
-        channel.bulkDelete(messages)
-
-
-        await channel.send({embeds: [newEmbed]});
+        await channel.send("*pk");
 
         })
     } catch(err) {

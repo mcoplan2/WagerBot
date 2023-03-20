@@ -1,15 +1,17 @@
-const profileModel = require('../models/profileSchema');
-const { MessageEmbed, MessageAttachment } = require('discord.js');
-const { db } = require('../models/profileSchema');
-const nodeHtmlToImage = require('node-html-to-image')
-const { createCanvas, loadImage } = require('canvas');
-require('dotenv').config();
+const { MessageAttachment } = require('discord.js');
+const { db } = require('../models/profileSchema.js');
+const nodeHtmlToImage = require('node-html-to-image');
+const { createCanvas, loadImage, setTransform } = require('canvas');
+const dotenv = require('dotenv');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const Pkleaderboard = require('../components/pkleaderboard');
-require('@babel/register')({
-    presets: ['@babel/preset-react']
-  });
+const Pkleaderboard = require('../components/pkleaderboard.js');
+
+dotenv.config();
+
+require("@babel/register")({
+  presets: ["@babel/preset-react"],
+});
 
 
 // TODO:
@@ -53,28 +55,41 @@ module.exports = {
 
                 // Set up the HTML-to-Image conversion options
                 const options = {
-                    width:2500,
-                    height:1800,
-                    quality: 1,
-                    type: 'png',
+                    quality: 100,
+                    type: 'jpeg',
                     puppeteerArgs: { args: ['--no-sandbox'] },
-                    encoding: 'buffer'
+                    encoding: 'buffer',
+                    scale: 1
                   };
                   
                   // Use node-html-to-image to convert the HTML table to a PNG image buffer
-                  nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs }, options)
+                  await nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs }, options)
                     .then(async (buffer) => {
                       // Load the image data into a canvas
                       const img = await loadImage(buffer);
-                      const canvas = createCanvas(img.width, img.height);
-                      const ctx = canvas.getContext('2d');
-                      ctx.drawImage(img, 0, 0, img.width, img.height);
+                    const canvas = createCanvas(img.width*2, img.height*2); // double the size of the canvas
+                    const ctx = canvas.getContext('2d');
+                    
+                    ctx.scale(2, 2)
+                    var scale = Math.max(ctx.canvas.width / img.width, ctx.canvas.height / img.height);
+                    var x = (ctx.canvas.width - (img.width * scale) ) / 2;
+                    var y = (ctx.canvas.height - (img.height * scale) ) / 2;
+                    ctx.setTransform(scale, 0, 0, scale, x, y);
+
+                    ctx.drawImage(img, 0, 0, img.width, img.height); // draw the image at double the size
 
                     // Create a Discord message attachment with the canvas image data
                     const attachment = new MessageAttachment(canvas.toBuffer(), 'leaderboard.png');
 
                     // Send the embed with the leaderboard image to the Discord channel
-                    messageCreate.channel.send({ files: [attachment] });
+
+
+                    const leaderboardChannelId = '1085554952874774659';
+                    const leaderboardChannel = client.channels.cache.get(leaderboardChannelId);
+
+                    const messages = await leaderboardChannel.messages.fetch({limit:100})
+                    leaderboardChannel.bulkDelete(messages)
+                    await leaderboardChannel.send({ files: [attachment] });
                 })
                 .catch((error) => {
                     console.error('Error creating leaderboard image:', error);

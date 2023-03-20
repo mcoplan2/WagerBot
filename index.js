@@ -105,7 +105,7 @@ client.on('messageCreate', message => {
             })
             pkReportCardChannel.send("Total Gold Earned: "+sum.toLocaleString("en-US")+" GP");
             console.log("Messages " + collected.size);
-            const leaderboardChannelId = '1085554952874774659';
+            const leaderboardChannelId = '1084902149982531728';
             const leaderboardChannel = client.channels.cache.get(leaderboardChannelId);
             // give a chance for the database to update before displaying new leaderboard
             await sleep(120000)

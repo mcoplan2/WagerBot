@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  
   "author": "Matt",
   "license": "ISC",
   "dependencies": {
@@ -23,6 +22,7 @@
     "babel-loader": "^9.1.2",
     "babel-node": "^0.0.1-security",
     "canvas": "^2.11.0",
+    "canvas-sketch-util": "^1.10.0",
     "dataurl": "^0.1.0",
     "discord.js": "^13.10.3",
     "dotenv": "^16.0.1",
