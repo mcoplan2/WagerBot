@@ -152,7 +152,7 @@ client.on('messageCreate', message => {
                         //make this output top GP, lowest, list everyone, total all loot
                         sum2 += value;
                         if (sum2 > 0) {
-                            pvmerReportChannel.send(`${i}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
+                            pvmerReportChannel.send(`${j}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
                         }
                         j = j+1;
                         // if the user is not in the database create a new document 
