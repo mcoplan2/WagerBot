@@ -8,7 +8,7 @@ require("@babel/register")({
 });
 
 
-function Pkleaderboard  ( data )  {
+function Pvmleaderboard  ( data )  {
     const {players} = data;
     const topThree = players.slice(0, 3);
     let sum = 0;
@@ -70,7 +70,7 @@ function Pkleaderboard  ( data )  {
         <div className="container">
         <div style={{ textAlign: 'center', backgroundColor: '#313338', padding: 0 }}>
         <Typography variant="h6" align="center" fontSize={128} fontWeight="bold" color="white">
-                PK LEADERBOARD
+                PVM LEADERBOARD
         </Typography>
          </div>
             <Grid container justifyContent="center">
@@ -137,4 +137,4 @@ function Pkleaderboard  ( data )  {
   }
     
 
-module.exports = Pkleaderboard;
+module.exports = Pvmleaderboard;

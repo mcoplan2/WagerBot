@@ -5,18 +5,18 @@ const { createCanvas, loadImage, setTransform } = require('canvas');
 const dotenv = require('dotenv');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
+const Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
 
 
 
 // TODO:
 // Make it so it only displays users on your server.
 
-async function updateLeaderboard(channel, client) {
+async function updatePVMLeaderboard(channel, client) {
 
     // recieve the top 5 users
     try {
-        db.collection("gpmodels").aggregate([
+        db.collection("pvmmodels").aggregate([
             { $project: 
                 {
                     'name' : '$name',
@@ -31,7 +31,7 @@ async function updateLeaderboard(channel, client) {
         }
         
 
-        const leaderboardHtml = ReactDOMServer.renderToString(<Pkleaderboard players={result} />);
+        const leaderboardHtml = ReactDOMServer.renderToString(<Pvmleaderboard players={result} />);
 
         // Set up the HTML-to-Image conversion options
         const options = {
@@ -59,7 +59,7 @@ async function updateLeaderboard(channel, client) {
             ctx.drawImage(img, 0, 0, img.width, img.height); // draw the image at double the size
 
             // Create a Discord message attachment with the canvas image data
-            const attachment = new MessageAttachment(canvas.toBuffer(), 'leaderboard.png');
+            const attachment = new MessageAttachment(canvas.toBuffer(), 'leaderboard2.png');
 
             // Send the embed with the leaderboard image to the Discord channel
             const messages = await channel.messages.fetch({limit:100})
@@ -76,4 +76,4 @@ async function updateLeaderboard(channel, client) {
         console.log(err);
     }
 }
-module.exports = {updateLeaderboard}
+module.exports = {updatePVMLeaderboard}

@@ -8,7 +8,7 @@ module.exports = async (client, messageCreate, interaction) => {
 
     const prefix = process.env.PREFIX;
 
-    if(!messageCreate.content.startsWith(prefix)) return;
+    if(!messageCreate.content.startsWith(prefix) || messageCreate.author.bot) return;
 
     let profileData;
     try {
