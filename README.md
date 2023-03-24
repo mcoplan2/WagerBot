@@ -77,13 +77,9 @@ shortbet - A bet that lasts around 5 minutes
 
 ## Backlog / Upcoming Features
 
-Format output text(report card) of Top 2 and bottom 2 as well as a list of everyone else with total gold earned to PK channel
-
-Make Embed more fancy
+Add a scheduled command every 24 hours
 
 clean up code / provide documentation / comments
-
-find a host for the bot so no local host
 
 
 
