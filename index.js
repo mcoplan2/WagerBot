@@ -33,6 +33,12 @@ mongoose.connect(process.env.MONGODB_SRV, {
 // Input Discord Token
 client.login(process.env.DISCORD_TOKEN);
 
+const approvedMembers = ["Xmas Bandit", "E2P", "schol", "ff3r", "Dualerz", 
+                        "Kemp", "TurkeyMaster", "LukaDONCIC77", "Scotticon",
+                        "Flemingo", "Just Darsh", "DEMUNLULLIO", "Huutista", 
+                        "bighunterkid", "Packed", "Moooosey", "Roelol", "gayp", 
+                        "Epic Rafox", "Spear", "I Love You", "Jay Are"]
+
 let pkers = new Map;
 let pvmers = new Map;
 // Listen for messages from webhook
@@ -47,7 +53,7 @@ client.on('messageCreate', message => {
         collecter.on('collect', (message, col) => {
 
             // only collect messages that contain 'defeated'
-            if (message.content.includes("defeated")) {
+            if (message.content.includes("has defeated")) {
                 console.log("Collected message: " +message.content);
 
                 // parse the string into a pkerName(playerName) and pkerCoins(GP);
@@ -60,17 +66,19 @@ client.on('messageCreate', message => {
                 console.log(pkers);
                 
                 // if the player is not already in the map, add to the map
-                if(pkers.get(pkerName) == undefined) {
-                    pkers.set(pkerName, pkerCoins);
-                } else {
-                    // if the player is in the map, increment their coins
-                    pkers.set(pkerName, (pkers.get(pkerName)+pkerCoins));
+                if(approvedMembers.includes(pkerName)) {
+                    if(pkers.get(pkerName) == undefined) {
+                        pkers.set(pkerName, pkerCoins);
+                    } else {
+                        // if the player is in the map, increment their coins
+                        pkers.set(pkerName, (pkers.get(pkerName)+pkerCoins));
+                    }
                 }
                 
                 console.log(pkers.get(pkerName));
             }
 
-            if ((message.content.includes("drop")) || (message.content.includes("special loot"))) {
+            if ((message.content.includes("received a drop:")) || (message.content.includes("special loot from a raid:"))) {
 
                 console.log("Collected message: " +message.content);
 
@@ -84,11 +92,13 @@ client.on('messageCreate', message => {
                 console.log(pvmers);
                 
                 // if the player is not already in the map, add to the map
-                if(pvmers.get(pvmerName) == undefined) {
-                    pvmers.set(pvmerName, pvmerCoins);
-                } else {
-                    // if the player is in the map, increment their coins
-                    pvmers.set(pvmerName, (pvmers.get(pvmerName)+pvmerCoins));
+                if(approvedMembers.includes(pvmerName)) {
+                    if(pvmers.get(pvmerName) == undefined) {
+                        pvmers.set(pvmerName, pvmerCoins);
+                    } else {
+                        // if the player is in the map, increment their coins
+                        pvmers.set(pvmerName, (pvmers.get(pvmerName)+pvmerCoins));
+                    }
                 }
                 
                 console.log(pvmers.get(pvmerName));

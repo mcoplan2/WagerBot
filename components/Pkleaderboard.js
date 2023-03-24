@@ -21,8 +21,8 @@ function Pkleaderboard  ( data )  {
         <style>
           {`
             body {
-              width: 2600px;
-              height: 2600px;
+              width: 3400px;
+              height: 3400px;
             }
     
             .container {

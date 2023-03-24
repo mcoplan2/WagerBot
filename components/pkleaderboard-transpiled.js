@@ -29,8 +29,8 @@ function Pkleaderboard(data) {
   });
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("style", null, `
             body {
-              width: 2600px;
-              height: 2600px;
+              width: 3400px;
+              height: 3400px;
             }
     
             .container {
