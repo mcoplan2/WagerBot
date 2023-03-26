@@ -5,11 +5,11 @@ module.exports = async (client) => {
 
     const prefix = process.env.PREFIX;
     console.log('Bot is ON!');
-    cron.schedule('0 0 * * *', () => {
+    cron.schedule('0 4 * * *', () => {
         const channel = client.channels.cache.get('1084902149982531728'); // replace <channel-id> with the actual channel ID
         channel.send('?stop');
         setTimeout(() => {
-          channel.send('?');
+          channel.send('?listen');
         }, 30000); // wait 30 seconds before sending the second message
       });
 
