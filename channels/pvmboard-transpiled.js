@@ -62,7 +62,7 @@ function _updatePVMLeaderboard() {
                         quality: 100,
                         type: 'jpeg',
                         puppeteerArgs: {
-                          args: ['--no-sandbox']
+                          args: ['--no-sandbox', '--disable-dev-shm-usage']
                         },
                         encoding: 'buffer',
                         scale: 1
