@@ -243,6 +243,8 @@ client.on('messageCreate', message => {
             if (pvmersSorted.size > 0) {
                 pvmerReportChannel.send("Total Gold Earned: "+sum2.toLocaleString("en-US")+" GP")
             }
+            pkers.clear();
+            pvmers.clear();
             console.log("Messages " + collected.size);
             const leaderboardChannelId = '1085554952874774659';
             const leaderboardChannel = client.channels.cache.get(leaderboardChannelId);
@@ -252,8 +254,6 @@ client.on('messageCreate', message => {
             await sleep(120000)
             await updateLeaderboard(leaderboardChannel, client);
             await updatePVMLeaderboard(leaderboardPVMChannel, client);
-            pkers.clear();
-            pvmers.clear();
         });
     }
 
