@@ -62,8 +62,7 @@ function _updateLeaderboard() {
                         quality: 100,
                         type: 'jpeg',
                         puppeteerArgs: {
-                          args: ['--no-sandbox'],
-                          executablePath: '/usr/bin/google-chrome-stable'
+                          args: ['--no-sandbox']
                         },
                         encoding: 'buffer',
                         scale: 1

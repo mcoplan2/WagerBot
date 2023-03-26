@@ -38,7 +38,7 @@ async function updateLeaderboard(channel, client) {
         const options = {
             quality: 100,
             type: 'jpeg',
-            puppeteerArgs: { args: ['--no-sandbox'], executablePath: '/usr/bin/google-chrome-stable' },
+            puppeteerArgs: { args: ['--no-sandbox'] },
             encoding: 'buffer',
             scale: 1
             };
