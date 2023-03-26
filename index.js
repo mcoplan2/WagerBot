@@ -245,8 +245,8 @@ client.on('messageCreate', message => {
             }
             pkers.clear();
             pvmers.clear();
-            rsPkers.clear();
-            rsPvmers.clear();
+            rsPkers.length = 0;
+            rsPvmers.length = 0;
             console.log("Messages " + collected.size);
             const leaderboardChannelId = '1085554952874774659';
             const leaderboardChannel = client.channels.cache.get(leaderboardChannelId);
