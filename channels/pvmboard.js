@@ -7,6 +7,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
 const puppeteer = require('puppeteer-core');
+const config = require('./puppeteer.config')
 
 
 
@@ -32,11 +33,7 @@ async function updatePVMLeaderboard(channel, client) {
                 console.log(err)
         }
 
-        const browser = await puppeteer.launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: process.env.CHROMIUM_PATH,
-          });
-        
+        const browser = await puppeteer.launch(config.launch);
 
         const leaderboardHtml = ReactDOMServer.renderToString(<Pvmleaderboard players={result} />);
 

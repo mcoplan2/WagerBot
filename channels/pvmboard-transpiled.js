@@ -18,6 +18,7 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
 var puppeteer = require('puppeteer-core');
+var config = require('./puppeteer.config');
 
 // TODO:
 // Make it so it only displays users on your server.
@@ -56,10 +57,7 @@ function _updatePVMLeaderboard() {
                         console.log(err);
                       }
                       _context3.next = 3;
-                      return puppeteer.launch({
-                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-                        executablePath: process.env.CHROMIUM_PATH
-                      });
+                      return puppeteer.launch(config.launch);
                     case 3:
                       browser = _context3.sent;
                       leaderboardHtml = ReactDOMServer.renderToString( /*#__PURE__*/React.createElement(Pvmleaderboard, {
