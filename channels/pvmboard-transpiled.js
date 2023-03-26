@@ -17,8 +17,7 @@ var dotenv = require('dotenv');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
-var puppeteer = require('puppeteer-core');
-var config = require('./puppeteer.config');
+var puppeteer = require('puppeteer');
 
 // TODO:
 // Make it so it only displays users on your server.
@@ -26,9 +25,9 @@ function updatePVMLeaderboard(_x, _x2) {
   return _updatePVMLeaderboard.apply(this, arguments);
 }
 function _updatePVMLeaderboard() {
-  _updatePVMLeaderboard = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(channel, client) {
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-      while (1) switch (_context4.prev = _context4.next) {
+  _updatePVMLeaderboard = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(channel, client) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
         case 0:
           // recieve the top 5 users
           try {
@@ -48,18 +47,14 @@ function _updatePVMLeaderboard() {
                 'gp': -1
               }
             }]).toArray( /*#__PURE__*/function () {
-              var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(err, result) {
-                var browser, leaderboardHtml, options;
-                return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-                  while (1) switch (_context3.prev = _context3.next) {
+              var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(err, result) {
+                var leaderboardHtml, options;
+                return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                  while (1) switch (_context2.prev = _context2.next) {
                     case 0:
                       if (err) {
                         console.log(err);
                       }
-                      _context3.next = 3;
-                      return puppeteer.launch(config.launch);
-                    case 3:
-                      browser = _context3.sent;
                       leaderboardHtml = ReactDOMServer.renderToString( /*#__PURE__*/React.createElement(Pvmleaderboard, {
                         players: result
                       })); // Set up the HTML-to-Image conversion options
@@ -67,16 +62,15 @@ function _updatePVMLeaderboard() {
                         quality: 100,
                         type: 'jpeg',
                         puppeteerArgs: {
-                          args: ['--no-sandbox', '--disable-dev-shm-usage']
+                          args: ['--no-sandbox']
                         },
                         encoding: 'buffer',
                         scale: 1
                       }; // Use node-html-to-image to convert the HTML table to a PNG image buffer
-                      _context3.next = 8;
+                      _context2.next = 5;
                       return nodeHtmlToImage({
                         html: leaderboardHtml,
-                        puppeteerArgs: options.puppeteerArgs,
-                        browser: browser
+                        puppeteerArgs: options.puppeteerArgs
                       }, options).then( /*#__PURE__*/function () {
                         var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(buffer) {
                           var img, canvas, ctx, scale, x, y, attachment, messages;
@@ -120,23 +114,12 @@ function _updatePVMLeaderboard() {
                         };
                       }())["catch"](function (error) {
                         console.error('Error creating leaderboard image:', error);
-                      })["finally"]( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-                        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                          while (1) switch (_context2.prev = _context2.next) {
-                            case 0:
-                              _context2.next = 2;
-                              return browser.close();
-                            case 2:
-                            case "end":
-                              return _context2.stop();
-                          }
-                        }, _callee2);
-                      })));
-                    case 8:
+                      });
+                    case 5:
                     case "end":
-                      return _context3.stop();
+                      return _context2.stop();
                   }
-                }, _callee3);
+                }, _callee2);
               }));
               return function (_x3, _x4) {
                 return _ref.apply(this, arguments);
@@ -147,9 +130,9 @@ function _updatePVMLeaderboard() {
           }
         case 1:
         case "end":
-          return _context4.stop();
+          return _context3.stop();
       }
-    }, _callee4);
+    }, _callee3);
   }));
   return _updatePVMLeaderboard.apply(this, arguments);
 }
