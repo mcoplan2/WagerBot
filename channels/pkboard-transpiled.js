@@ -17,7 +17,7 @@ var dotenv = require('dotenv');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
-var puppeteer = require('puppeteer');
+var puppeteer = require('puppeteer-core');
 var config = require('./puppeteer.config');
 
 // TODO:

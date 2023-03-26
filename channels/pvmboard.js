@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 
 
 

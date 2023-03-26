@@ -17,7 +17,7 @@ var dotenv = require('dotenv');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
-var puppeteer = require('puppeteer');
+var puppeteer = require('puppeteer-core');
 
 // TODO:
 // Make it so it only displays users on your server.
