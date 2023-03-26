@@ -175,10 +175,10 @@ client.on('messageCreate', message => {
             const pvmerReportChannel = client.channels.cache.get(pvmerReportChannelId);
             
             if(pkers.size > 0) {
-                pkReportCardChannel.send('Adding up all the kills for ' + new Date().toDateString() +":" );
+                //pkReportCardChannel.send('Adding up all the kills for ' + new Date().toDateString() +":" );
             }
             if(pvmers.size > 0) {
-                pvmerReportChannel.send('Adding up all the drops recieved on: ' + new Date().toDateString() +":" );
+                //pvmerReportChannel.send('Adding up all the drops recieved on: ' + new Date().toDateString() +":" );
 
             }
             // sort by gold value in ascending
@@ -194,7 +194,7 @@ client.on('messageCreate', message => {
                     //make this output top GP, lowest, list everyone, total all loot
                     sum += value;
                     if (sum > 0) {
-                        pkReportCardChannel.send(`${i}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
+                        //pkReportCardChannel.send(`${i}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
                     }
                     i = i+1;
                     // if the user is not in the database create a new document 
@@ -219,7 +219,7 @@ client.on('messageCreate', message => {
                         //make this output top GP, lowest, list everyone, total all loot
                         sum2 += value;
                         if (sum2 > 0) {
-                            pvmerReportChannel.send(`${j}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
+                            //pvmerReportChannel.send(`${j}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
                         }
                         j = j+1;
                         // if the user is not in the database create a new document 
@@ -237,11 +237,11 @@ client.on('messageCreate', message => {
                     }
             })
             if (pkersSorted.size > 0) {
-                pkReportCardChannel.send("Total Gold Earned: "+sum.toLocaleString("en-US")+" GP");
+                //pkReportCardChannel.send("Total Gold Earned: "+sum.toLocaleString("en-US")+" GP");
             }
             
             if (pvmersSorted.size > 0) {
-                pvmerReportChannel.send("Total Gold Earned: "+sum2.toLocaleString("en-US")+" GP")
+                //pvmerReportChannel.send("Total Gold Earned: "+sum2.toLocaleString("en-US")+" GP")
             }
             console.log("Messages " + collected.size);
             const leaderboardChannelId = '1085554952874774659';
