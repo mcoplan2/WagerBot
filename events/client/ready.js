@@ -7,9 +7,9 @@ module.exports = async (client) => {
     console.log('Bot is ON!');
     cron.schedule('0 0 * * *', () => {
         const channel = client.channels.cache.get('<channel-id>'); // replace <channel-id> with the actual channel ID
-        channel.send('?listen');
+        channel.send('?stop');
         setTimeout(() => {
-          channel.send('?stop');
+          channel.send('?listen');
         }, 30000); // wait 30 seconds before sending the second message
       });
 
