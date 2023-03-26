@@ -25,9 +25,9 @@ function updateLeaderboard(_x, _x2) {
   return _updateLeaderboard.apply(this, arguments);
 }
 function _updateLeaderboard() {
-  _updateLeaderboard = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(channel, client) {
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
+  _updateLeaderboard = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(channel, client) {
+    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+      while (1) switch (_context4.prev = _context4.next) {
         case 0:
           // recieve the top 5 users
           try {
@@ -47,14 +47,21 @@ function _updateLeaderboard() {
                 'gp': -1
               }
             }]).toArray( /*#__PURE__*/function () {
-              var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(err, result) {
-                var leaderboardHtml, options;
-                return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                  while (1) switch (_context2.prev = _context2.next) {
+              var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(err, result) {
+                var browser, leaderboardHtml, options;
+                return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                  while (1) switch (_context3.prev = _context3.next) {
                     case 0:
                       if (err) {
                         console.log(err);
                       }
+                      _context3.next = 3;
+                      return puppeteer.launch({
+                        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+                        executablePath: process.env.CHROMIUM_PATH
+                      });
+                    case 3:
+                      browser = _context3.sent;
                       leaderboardHtml = ReactDOMServer.renderToString( /*#__PURE__*/React.createElement(Pkleaderboard, {
                         players: result
                       })); // Set up the HTML-to-Image conversion options
@@ -67,10 +74,11 @@ function _updateLeaderboard() {
                         encoding: 'buffer',
                         scale: 1
                       }; // Use node-html-to-image to convert the HTML table to a PNG image buffer
-                      _context2.next = 5;
+                      _context3.next = 8;
                       return nodeHtmlToImage({
                         html: leaderboardHtml,
-                        puppeteerArgs: options.puppeteerArgs
+                        puppeteerArgs: options.puppeteerArgs,
+                        browser: browser
                       }, options).then( /*#__PURE__*/function () {
                         var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(buffer) {
                           var img, canvas, ctx, scale, x, y, attachment, messages;
@@ -114,12 +122,23 @@ function _updateLeaderboard() {
                         };
                       }())["catch"](function (error) {
                         console.error('Error creating leaderboard image:', error);
-                      });
-                    case 5:
+                      })["finally"]( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+                        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                          while (1) switch (_context2.prev = _context2.next) {
+                            case 0:
+                              _context2.next = 2;
+                              return browser.close();
+                            case 2:
+                            case "end":
+                              return _context2.stop();
+                          }
+                        }, _callee2);
+                      })));
+                    case 8:
                     case "end":
-                      return _context2.stop();
+                      return _context3.stop();
                   }
-                }, _callee2);
+                }, _callee3);
               }));
               return function (_x3, _x4) {
                 return _ref.apply(this, arguments);
@@ -130,9 +149,9 @@ function _updateLeaderboard() {
           }
         case 1:
         case "end":
-          return _context3.stop();
+          return _context4.stop();
       }
-    }, _callee3);
+    }, _callee4);
   }));
   return _updateLeaderboard.apply(this, arguments);
 }

@@ -30,6 +30,11 @@ async function updateLeaderboard(channel, client) {
             if(err) { 
                 console.log(err)
         }
+
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: process.env.CHROMIUM_PATH,
+          });
         
 
         const leaderboardHtml = ReactDOMServer.renderToString(<Pkleaderboard players={result} />);
@@ -44,7 +49,7 @@ async function updateLeaderboard(channel, client) {
             };
             
             // Use node-html-to-image to convert the HTML table to a PNG image buffer
-            await nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs }, options)
+            await nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs, browser: browser }, options)
             .then(async (buffer) => {
                 // Load the image data into a canvas
                 const img = await loadImage(buffer);
@@ -69,7 +74,11 @@ async function updateLeaderboard(channel, client) {
         })
         .catch((error) => {
             console.error('Error creating leaderboard image:', error);
-        });
+        }).finally(async () => {
+            // Close the Puppeteer browser
+            await browser.close();
+          });
+        
 
     
         })
