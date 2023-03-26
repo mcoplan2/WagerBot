@@ -12,9 +12,7 @@ const { getDifference, sleep } = require('./utils/functions');
 const { updatePVMLeaderboard } = require('./channels/pvmboard.js');
 const { rsPlayer } = require('./models/rsPlayer.js');
 
-require("@babel/register")({
-    presets: ["@babel/preset-react"],
-  });
+require('@babel/register');
 
 client.commands = new Collection();
 client.events = new Collection();
