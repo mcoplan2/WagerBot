@@ -10,6 +10,7 @@ const { updateGP } = require('./repository/token_repository');
 const { db } = require('./models/profileSchema');
 const { getDifference, sleep } = require('./utils/functions');
 const { updatePVMLeaderboard } = require('./channels/pvmboard.js');
+const { rsPlayer } = require('./models/rsPlayer.js');
 
 require("@babel/register")({
     presets: ["@babel/preset-react"],
@@ -41,6 +42,11 @@ const approvedMembers = ["Xmas Bandit", "E2P", "schol", "ff3r", "Dualerz",
 
 let pkers = new Map;
 let pvmers = new Map;
+let rsPkers = new Array();
+let rsPvmers = new Array();
+
+
+
 // Listen for messages from webhook
 client.on('messageCreate', message => {
     if(message.content.toLowerCase() === '?listen') {
@@ -64,23 +70,46 @@ client.on('messageCreate', message => {
                 console.log("Collected name:" +pkerName);
                 console.log("Collected amount:" +pkerCoins);
                 console.log(pkers);
+                const date = new Date();
+                const pkerTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
                 
                 // if the player is not already in the map, add to the map
                 if(approvedMembers.includes(pkerName)) {
-                    if(pkers.get(pkerName) == undefined) {
-                        pkers.set(pkerName, pkerCoins);
+                    if (!rsPkers.some(o => o.name === pkerName)) {
+                        let pkers2 = new rsPlayer;
+                        pkers2.name = pkerName;
+                        pkers2.gp = pkerCoins;
+                        pkers2.time = pkerTime;
+                        rsPkers.push(pkers2);
                     } else {
-                        // if the player is in the map, increment their coins
-                        pkers.set(pkerName, (pkers.get(pkerName)+pkerCoins));
+                        let existingPlayer = rsPkers.find(o => o.name === pkerName);
+                        if (existingPlayer.time != pkerTime || existingPlayer.gp != pkerCoins) {
+                            let pkers2 = new rsPlayer;
+                            pkers2.name = pkerName;
+                            pkers2.gp = pkerCoins;
+                            pkers2.time = pkerTime
+                            rsPkers.push(pkers2)
+                        }
                     }
                 }
+
+                    console.log(rsPkers)
+                    // if(pkers.get(pkerName) == undefined) {
+                    //     pkers.set(pkerName, pkerCoins);
+                    // } else {
+                    //     // if the player is in the map, increment their coins
+                    //     pkers.set(pkerName, (pkers.get(pkerName)+pkerCoins));
+                    // }
                 
-                console.log(pkers.get(pkerName));
+                //console.log(pkers.get(pkerName));
             }
 
             if ((message.content.includes("received a drop:")) || (message.content.includes("special loot from a raid:"))) {
 
                 console.log("Collected message: " +message.content);
+                const date = new Date();
+                const pvmerTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
                 // parse the string into a pkerName(playerName) and pkerCoins(GP);
                 // example string: ff3r has defeated Oculist and received (840,570 coins) worth of loot!
@@ -93,16 +122,27 @@ client.on('messageCreate', message => {
                 
                 // if the player is not already in the map, add to the map
                 if(approvedMembers.includes(pvmerName)) {
-                    if(pvmers.get(pvmerName) == undefined) {
-                        pvmers.set(pvmerName, pvmerCoins);
+                    if (!rsPvmers.some(o => o.name === pvmerName)) {
+                        let pvmers2 = new rsPlayer;
+                        pvmers2.name = pvmerName;
+                        pvmers2.gp = pvmerCoins;
+                        pvmers2.time = pvmerTime;
+                        rsPvmers.push(pvmers2);
                     } else {
-                        // if the player is in the map, increment their coins
-                        pvmers.set(pvmerName, (pvmers.get(pvmerName)+pvmerCoins));
-                    }
+                        let existingPlayer = rsPvmers.find(o => o.name === pvmerName);
+                        if (existingPlayer.time != pvmerTime || existingPlayer.gp != pvmerCoins) {
+                            let pvmers2 = new rsPlayer;
+                            pvmers2.name = pvmerName;
+                            pvmers2.gp = pvmerCoins;
+                            pvmers2.time = pvmerTime;
+                            rsPvmers.push(pvmers2);
+                        }
+                    
                 }
                 
-                console.log(pvmers.get(pvmerName));
+                console.log(rsPvmers)
 
+                }
             }
 
             // use ?stop when you want to stop collecting messages and add to the database
@@ -111,8 +151,27 @@ client.on('messageCreate', message => {
             }
             
         // Store information in Database
+
         });
         collecter.on('end', async collected => {
+            for (const player of rsPkers) {
+                if (pkers.has(player.name)) {
+                  const currentGp = pkers.get(player.name);
+                  pkers.set(player.name, currentGp + player.gp);
+                } else {
+                  pkers.set(player.name, player.gp);
+                }
+              }
+
+              for (const player of rsPvmers) {
+                if (pvmers.has(player.name)) {
+                  const currentGp = pvmers.get(player.name);
+                  pvmers.set(player.name, currentGp + player.gp);
+                } else {
+                  pvmers.set(player.name, player.gp);
+                }
+              }
+
             const pkReportCardChannelId = "1085620863086379099";
             const pkReportCardChannel = client.channels.cache.get(pkReportCardChannelId);
 
@@ -129,6 +188,7 @@ client.on('messageCreate', message => {
             // sort by gold value in ascending
             const pkersSorted = new Map([...pkers.entries()].sort((a, b) => b[1] - a[1]))
             const pvmersSorted = new Map([...pvmers.entries()].sort((a, b) => b[1] - a[1]))
+            console.log(pkersSorted)
 
             let i = 1;
             let j = 1;
@@ -143,10 +203,11 @@ client.on('messageCreate', message => {
                     i = i+1;
                     // if the user is not in the database create a new document 
                     // else update the document
-                    const query = {name: key};
+                    const query = { name: key.replace(/\s/g, "") };
                     const gpUsers = db.collection("gpmodels");
                     const gpUser = await gpUsers.findOne(query);
-                    console.log(gpUser);
+                    console.log("query:", query)
+                    console.log("testing", gpUser);
                     if (gpUser == null) {
                         await createGP(key, value)
                     } else {
@@ -167,10 +228,11 @@ client.on('messageCreate', message => {
                         j = j+1;
                         // if the user is not in the database create a new document 
                         // else update the document
-                        const query = {name: key};
+                        const query = { name: key.replace(/\s/g, "") };
                         const pvmUsers = db.collection("pvmmodels");
                         const pvmUser = await pvmUsers.findOne(query);
-                        console.log(pvmUser);
+                        console.log("query:", query)
+                        console.log("Testing: ", pvmUser);
                         if (pvmUser == null) {
                             await createPVM(key, value)
                         } else {

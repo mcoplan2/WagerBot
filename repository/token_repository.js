@@ -56,7 +56,7 @@ async function createPVM(name, gp) {
 }
 
 async function findPVM(name) {
-    await pvmmodel.findOne({name: new RegExp('^'+name+'$', "i")}, function(err, doc) {
+    await pvmmodel.findOne({name}, function(err, doc) {
       });
 }
 
