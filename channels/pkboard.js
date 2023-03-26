@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
+const puppeteer = require('puppeteer');
 
 
 
@@ -37,7 +38,7 @@ async function updateLeaderboard(channel, client) {
         const options = {
             quality: 100,
             type: 'jpeg',
-            puppeteerArgs: { args: ['--no-sandbox'] },
+            puppeteerArgs: { args: ['--no-sandbox'], executablePath: '/usr/bin/google-chrome-stable' },
             encoding: 'buffer',
             scale: 1
             };
