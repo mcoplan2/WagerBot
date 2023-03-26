@@ -31,12 +31,6 @@ async function createGP(name, gp) {
 
 }
 
-async function findGP(name) {
-    await gpModel.findOne({name: new RegExp('^'+name+'$', "i")}, function(err, doc) {
-      });
-}
-
-
 async function updateGP(name, gp) {
     await gpModel.findOneAndUpdate({
         name: name,
@@ -55,12 +49,6 @@ async function createPVM(name, gp) {
 
 }
 
-async function findPVM(name) {
-    await pvmmodel.findOne({name}, function(err, doc) {
-      });
-}
-
-
 async function updatePVM(name, gp) {
     await pvmmodel.findOneAndUpdate({
         name: name,
@@ -70,4 +58,4 @@ async function updatePVM(name, gp) {
         },
     });
 }
-module.exports = {updateTokens, updateTokensAndBank, updateGP, findGP, createGP, createPVM, findPVM, updatePVM};
+module.exports = {updateTokens, updateTokensAndBank, updateGP, createGP, createPVM, updatePVM};
