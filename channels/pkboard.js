@@ -7,6 +7,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
 const puppeteer = require('puppeteer');
+const config = require('./puppeteer.config')
 
 
 
@@ -31,10 +32,7 @@ async function updateLeaderboard(channel, client) {
                 console.log(err)
         }
 
-        const browser = await puppeteer.launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: process.env.CHROMIUM_PATH,
-          });
+        const browser = await puppeteer.launch(config.launch);
         
 
         const leaderboardHtml = ReactDOMServer.renderToString(<Pkleaderboard players={result} />);
