@@ -181,7 +181,7 @@ client.on('messageCreate', message => {
                 pvmerReportChannel.send('Adding up all the drops recieved on: ' + new Date().toDateString() +":" );
 
             }
-            // sort by gold vaalue in ascending
+            // sort by gold value in ascending
             const pkersSorted = new Map([...pkers.entries()].sort((a, b) => b[1] - a[1]))
             const pvmersSorted = new Map([...pvmers.entries()].sort((a, b) => b[1] - a[1]))
             console.log(pkersSorted)
