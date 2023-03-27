@@ -17,6 +17,7 @@
     "@material-ui/styles": "^4.11.5",
     "@mui/material": "^5.11.13",
     "canvas": "^2.11.0",
+    "chrome-aws-lambda": "^10.1.0",
     "discord.js": "^13.14.0",
     "dotenv": "^16.0.1",
     "lodash": "^4.17.21",

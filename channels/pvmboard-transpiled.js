@@ -18,6 +18,7 @@ var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
 var puppeteerCore = require('puppeteer-core');
+var chrome = require('chrome-aws-lambda');
 require("@babel/register")({
   presets: ["@babel/preset-react"]
 });

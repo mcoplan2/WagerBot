@@ -7,6 +7,7 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
 const puppeteerCore = require('puppeteer-core');
+const chrome = require('chrome-aws-lambda');
 
 require("@babel/register")({
     presets: ["@babel/preset-react"]
