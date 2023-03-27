@@ -19,6 +19,7 @@ var ReactDOMServer = require('react-dom/server');
 var Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
 var puppeteerCore = require('puppeteer-core');
 var chrome = require('chrome-aws-lambda');
+var chromium = require('chrome-aws-lambda');
 require("@babel/register")({
   presets: ["@babel/preset-react"]
 });
