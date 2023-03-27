@@ -1,7 +1,6 @@
 const profileModel = require('../models/profileSchema');
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 const { updateTokens } = require('../repository/token_repository');
-const { random } = require('lodash');
 require('dotenv').config();
 
 module.exports = {

@@ -17,7 +17,6 @@ var dotenv = require('dotenv');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
-var puppeteer = require('puppeteer');
 require("@babel/register")({
   presets: ["@babel/preset-react"]
 });
