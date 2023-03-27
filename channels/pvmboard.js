@@ -8,7 +8,9 @@ const ReactDOMServer = require('react-dom/server');
 const Pvmleaderboard = require('../components/pvmleaderboard-transpiled.js');
 const puppeteer = require('puppeteer');
 
-
+require("@babel/register")({
+    presets: ["@babel/preset-react"]
+  });
 
 
 // TODO:

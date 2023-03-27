@@ -8,6 +8,9 @@ const ReactDOMServer = require('react-dom/server');
 const Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
 const puppeteer = require('puppeteer');
 
+require("@babel/register")({
+    presets: ["@babel/preset-react"]
+  });
 
 
 // TODO:
