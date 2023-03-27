@@ -19,7 +19,7 @@ client.events = new Collection();
     require(`./handlers/${handler}`)(client)
 })
 
-// connecting to DB
+// connecting to DdB
 mongoose.connect(process.env.MONGODB_SRV, {
 }).then( () => {
     console.log("Connected to DB");
