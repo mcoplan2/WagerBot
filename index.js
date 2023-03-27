@@ -216,7 +216,7 @@ client.on('messageCreate', message => {
                 pvmersSorted.forEach(async function(value, key){
                     if (value>0){
                         console.log(value);
-                        //make this output top GP, lowest, list everyone, total all loot
+                        //make this outpuut top GP, lowest, list everyone, total all loot
                         sum2 += value;
                         if (sum2 > 0) {
                             pvmerReportChannel.send(`${j}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
