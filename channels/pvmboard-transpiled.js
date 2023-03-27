@@ -61,8 +61,9 @@ function _updatePVMLeaderboard() {
                       options = {
                         quality: 100,
                         type: 'jpeg',
-                        puppeteerArgs: {
-                          args: ['--no-sandbox']
+                        ppuppeteerArgs: {
+                          headless: true,
+                          args: ['-no-sandbox', '-disable-setuid-sandbox']
                         },
                         encoding: 'buffer',
                         scale: 1

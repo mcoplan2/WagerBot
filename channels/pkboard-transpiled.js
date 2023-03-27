@@ -62,7 +62,8 @@ function _updateLeaderboard() {
                         quality: 100,
                         type: 'jpeg',
                         puppeteerArgs: {
-                          args: ['--no-sandbox']
+                          headless: true,
+                          args: ['-no-sandbox', '-disable-setuid-sandbox']
                         },
                         encoding: 'buffer',
                         scale: 1
