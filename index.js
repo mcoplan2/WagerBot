@@ -191,7 +191,7 @@ client.on('messageCreate', message => {
             pkersSorted.forEach(async function(value, key){
                 if (value>0){
                     console.log(value);
-                    //make this output top GP, lowest, list everyone, total all loot
+                    //make this outaput top GP, lowest, list everyone, total all loot
                     sum += value;
                     if (sum > 0) {
                         pkReportCardChannel.send(`${i}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")
