@@ -107,7 +107,7 @@ client.on('messageCreate', message => {
                 const date = new Date();
                 const pvmerTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-                // parse the string into a pkerName(playerName) and pkerCoins(GP);
+                // parse the string into aa pkerName(playerName) and pkerCoins(GP);
                 // example string: ff3r has defeated Oculist and received (840,570 coins) worth of loot!
                 // pkerName(ff3r), pkerCoins(840570)
                 const pvmerName = message.content.split(' received')[0];
