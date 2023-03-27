@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
+const puppeteerCore = require('puppeteer-core');
 
 require("@babel/register")({
     presets: ["@babel/preset-react"]
@@ -39,13 +40,18 @@ async function updateLeaderboard(channel, client) {
         const options = {
             quality: 100,
             type: 'jpeg',
-            puppeteerArgs: { headless: true, args:['-no-sandbox', '-disable-setuid-sandbox'] },
+            puppeteerArgs: { args: chromium.args,
+                executablePath: await chrome.executablePath },
             encoding: 'buffer',
             scale: 1
             };
             
             // Use node-html-to-image to convert the HTML table to a PNG image buffer
-            await nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs }, options)
+            await nodeHtmlToImage({ 
+                html: leaderboardHtml,
+                puppeteer: puppeteerCore,
+                puppeteerArgs: options.puppeteerArgs
+            }, options)
             .then(async (buffer) => {
                 // Load the image data into a canvas
                 const img = await loadImage(buffer);

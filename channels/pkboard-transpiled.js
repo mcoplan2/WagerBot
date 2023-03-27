@@ -17,6 +17,7 @@ var dotenv = require('dotenv');
 var React = require('react');
 var ReactDOMServer = require('react-dom/server');
 var Pkleaderboard = require('../components/pkleaderboard-transpiled.js');
+var puppeteerCore = require('puppeteer-core');
 require("@babel/register")({
   presets: ["@babel/preset-react"]
 });
@@ -60,19 +61,26 @@ function _updateLeaderboard() {
                       leaderboardHtml = ReactDOMServer.renderToString( /*#__PURE__*/React.createElement(Pkleaderboard, {
                         players: result
                       })); // Set up the HTML-to-Image conversion options
+                      _context2.t0 = chromium.args;
+                      _context2.next = 5;
+                      return chrome.executablePath;
+                    case 5:
+                      _context2.t1 = _context2.sent;
+                      _context2.t2 = {
+                        args: _context2.t0,
+                        executablePath: _context2.t1
+                      };
                       options = {
                         quality: 100,
                         type: 'jpeg',
-                        puppeteerArgs: {
-                          headless: true,
-                          args: ['-no-sandbox', '-disable-setuid-sandbox']
-                        },
+                        puppeteerArgs: _context2.t2,
                         encoding: 'buffer',
                         scale: 1
-                      }; // Use node-html-to-image to convert the HTML table to a PNG image buffer
-                      _context2.next = 5;
+                      };
+                      _context2.next = 10;
                       return nodeHtmlToImage({
                         html: leaderboardHtml,
+                        puppeteer: puppeteerCore,
                         puppeteerArgs: options.puppeteerArgs
                       }, options).then( /*#__PURE__*/function () {
                         var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(buffer) {
@@ -118,7 +126,7 @@ function _updateLeaderboard() {
                       }())["catch"](function (error) {
                         console.error('Error creating leaderboard image:', error);
                       });
-                    case 5:
+                    case 10:
                     case "end":
                       return _context2.stop();
                   }
