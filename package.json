@@ -8,8 +8,7 @@
   },
   "scripts": {
     "start": "node ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-prebuild": "apt-get update && apt-get install -y chromium-browser"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matt",
   "license": "ISC",
