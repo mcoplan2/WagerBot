@@ -43,7 +43,7 @@ async function updatePVMLeaderboard(channel, client) {
         const options = {
             quality: 100,
             type: 'jpeg',
-            puppeteerArgs: { headless: true, args:['-no-sandbox', '-disable-setuid-sandbox'] },
+            puppeteerArgs: { args: [ '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--no-first-run', '--headless', '--no-zygote', '--disable-gpu' ], headless: true, ignoreHTTPSErrors: true },
             encoding: 'buffer',
             scale: 1
             };

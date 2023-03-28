@@ -67,8 +67,9 @@ function _updateLeaderboard() {
                         quality: 100,
                         type: 'jpeg',
                         puppeteerArgs: {
+                          args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--no-first-run', '--headless', '--no-zygote', '--disable-gpu'],
                           headless: true,
-                          args: ['-no-sandbox', '-disable-setuid-sandbox']
+                          ignoreHTTPSErrors: true
                         },
                         encoding: 'buffer',
                         scale: 1
