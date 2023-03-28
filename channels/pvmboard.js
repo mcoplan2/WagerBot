@@ -43,18 +43,13 @@ async function updatePVMLeaderboard(channel, client) {
         const options = {
             quality: 100,
             type: 'jpeg',
-            puppeteerArgs: { args: chromium.args,
-                executablePath: await chrome.executablePath },
+            puppeteerArgs: { headless: true, args:['-no-sandbox', '-disable-setuid-sandbox'] },
             encoding: 'buffer',
             scale: 1
             };
             
             // Use node-html-to-image to convert the HTML table to a PNG image buffer
-        await nodeHtmlToImage({ 
-                html: leaderboardHtml,
-                puppeteer: puppeteerCore,
-                puppeteerArgs: options.puppeteerArgs
-            }, options)
+            await nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs }, options)
             .then(async (buffer) => {
                 // Load the image data into a canvas
                 const img = await loadImage(buffer);
