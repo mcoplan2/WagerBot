@@ -12,7 +12,7 @@ module.exports = {
     description: "boardroll",
     async execute(messageCreate, args, cmd, client, profileData) {
 
-        let randomNumber = Math.floor(Math.random() * 6) + 1;
+        let randomNumber = Math.floor(Math.random() * 4) + 1;
 
         return messageCreate.channel.send({embeds: [new MessageEmbed()
                             .setColor(0x00FFFF)
