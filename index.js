@@ -31,10 +31,10 @@ mongoose.connect(process.env.MONGODB_SRV, {
 client.login(process.env.DISCORD_TOKEN);
 
 const approvedMembers = ["Xmas Bandit", "E2P", "schol", "ff3r", "Dualerz", 
-                        "Kemp", "TurkeyMaster", "LukaDONCIC77", "Scotticon",
+                        "Kemp", "TurkeyMaster", "LukaDONClC77", "Scotticon",
                         "Flemingo", "Just Darsh", "DEMUNLULLIO", "Huutista", 
                         "bighunterkid", "Packed", "Moooosey", "Roelol", "gayp", 
-                        "Epic Rafox", "Spear", "I Love You", "Jay Are"]
+                        "Epic Rafox", "Spear", "I Love You", "Jay Are", "Dilx"]
 
 let pkers = new Map;
 let pvmers = new Map;
