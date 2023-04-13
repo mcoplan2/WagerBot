@@ -9,6 +9,7 @@ const { db } = require('./models/profileSchema');
 const { getDifference, sleep } = require('./utils/functions');
 const { updatePVMLeaderboard } = require('./channels/pvmboard.js');
 const { rsPlayer } = require('./models/rsPlayer.js');
+const http = require('http');
 
 require('@babel/register');
 
@@ -26,6 +27,12 @@ mongoose.connect(process.env.MONGODB_SRV, {
 }).catch((err) => {
     console.log(err)
 });
+
+
+setInterval(() => {
+  http.get("http://wagerbot.herokuapp.com");
+}, 25 * 60 * 1000); // every 25 minutes
+
 
 // Input Discord Token
 client.login(process.env.DISCORD_TOKEN);
