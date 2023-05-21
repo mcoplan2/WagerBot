@@ -8,11 +8,22 @@ module.exports = {
     name: "roll",
     aliases: [],
     permissions: [],
-    cooldown: 120,
+    cooldown: 20,
     description: "boardroll",
     async execute(messageCreate, args, cmd, client, profileData) {
 
-        let randomNumber = Math.floor(Math.random() * 3) + 1;
+        let randomNumber = Math.random() * 100;
+
+if (randomNumber < 45) {
+// 45% chance for number 1
+randomNumber = 1;
+} else if (randomNumber < 80) {
+// 35% chance for number 2
+randomNumber = 2;
+} else {
+// 20% chance for number 3
+randomNumber = 3;
+}
 
         return messageCreate.channel.send({embeds: [new MessageEmbed()
                             .setColor(0x00FFFF)
