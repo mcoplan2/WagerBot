@@ -14,16 +14,16 @@ module.exports = {
 
         let randomNumber = Math.random() * 100;
 
-if (randomNumber < 45) {
-// 45% chance for number 1
-randomNumber = 1;
-} else if (randomNumber < 80) {
-// 35% chance for number 2
-randomNumber = 2;
-} else {
-// 20% chance for number 3
-randomNumber = 3;
-}
+        if (randomNumber < 45) {
+        // 45% chance for number 1
+        randomNumber = 3;
+        } else if (randomNumber < 80) {
+        // 35% chance for number 2
+        randomNumber = 3;
+        } else {
+        // 20% chance for number 3
+        randomNumber = 3;
+        }
 
         return messageCreate.channel.send({embeds: [new MessageEmbed()
                             .setColor(0x00FFFF)
