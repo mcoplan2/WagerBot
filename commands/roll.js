@@ -16,10 +16,10 @@ module.exports = {
 
         if (randomNumber < 45) {
         // 45% chance for number 1
-        randomNumber = 3;
+        randomNumber = 1;
         } else if (randomNumber < 80) {
         // 35% chance for number 2
-        randomNumber = 3;
+        randomNumber = 2;
         } else {
         // 20% chance for number 3
         randomNumber = 3;
