@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "mkdir ./.cache && mv /app/.cache/puppeteer ./.cache",
     "build": "node node_modules/puppeteer/install.mjs && mkdir -p ./.cache && mv /app/.cache/puppeteer ./.cache"
   },
   "author": "Matt",
