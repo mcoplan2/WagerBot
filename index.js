@@ -37,11 +37,11 @@ setInterval(() => {
 // Input Discord Token
 client.login(process.env.DISCORD_TOKEN);
 
-const approvedMembers = ["Xmas Bandit", "E2P", "schol", "ff3r", "Dualerz", 
-                        "Kemp", "TurkeyMaster", "LukaDONClC77", "Scotticon",
+const approvedMembers = ["Xmas Bandit", "E2P", "schol", "l o d a m", "Dualerz", 
+                        "Kemp", "TurkeyMaster", "John Creasy", "Scotticon",
                         "Flemingo", "Just Darsh", "DEMUNLULLIO", "Huutista", 
                         "bighunterkid", "Packed", "Moooosey", "Roelol", "gayp", 
-                        "Epic Rafox", "Spear", "I Love You", "Jay Are", "Dilx"]
+                        "Epic Rodam", "Spear", "I Love You", "Jay Are", "Dilx", "Hannys Main"]
 
 let pkers = new Map;
 let pvmers = new Map;
