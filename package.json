@@ -1,11 +1,15 @@
 {
   "name": "discord-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "engines": {
+    "node": "18.x"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "bash postbuild.bash"
   },
   "author": "Matt",
   "license": "ISC",
