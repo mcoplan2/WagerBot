@@ -41,7 +41,7 @@ const approvedMembers = ["Xmas Bandit", "E2P", "schol", "l o d a m", "Dualerz",
                         "Kemp", "TurkeyMaster", "John Creasy", "Scotticon",
                         "Flemingo", "Just Darsh", "DEMUNLULLIO", "Huutista", 
                         "bighunterkid", "Packed", "Moooosey", "Roelol", "gayp", 
-                        "Epic Rodam", "Spear", "I Love You", "Jay Are", "Dilx", "Hannys Main"]
+                        "Epic Rodam", "Spear", "I Love You", "Jay Are", "Dilx", "Hannys Main", "Hell Nova"]
 
 let pkers = new Map;
 let pvmers = new Map;
