@@ -260,7 +260,7 @@ client.on('messageCreate', message => {
             const leaderboardPVMChannelId = '1087909911763107840';
             const leaderboardPVMChannel = client.channels.cache.get(leaderboardPVMChannelId);
             // give a chance for the database to update before displaying new leaderboard
-            await sleep(120000)
+            await sleep(60000)
             await updateLeaderboard(leaderboardChannel, client);
             await updatePVMLeaderboard(leaderboardPVMChannel, client);
         });
