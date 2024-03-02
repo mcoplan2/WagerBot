@@ -212,9 +212,9 @@ client.on('messageCreate', message => {
                     console.log("query:", query)
                     console.log("testing", gpUser);
                     if (gpUser == null) {
-                        await createGP(key, value)
+                        await createGP(query, value)
                     } else {
-                        await updateGP(key, value);
+                        await updateGP(query, value);
                     }
                 }
             })
@@ -231,14 +231,15 @@ client.on('messageCreate', message => {
                         j = j+1;
                         // if the user is not in the database create a new document 
                         // else update the document
+                        const query = { name: key.replace(/\s/g, "") };
                         const pvmUsers = db.collection("pvmmodels");
-                        const pvmUser = await pvmUsers.findOne(key);
-                        console.log("query:", key)
+                        const pvmUser = await pvmUsers.findOne(query);
+                        console.log("query:", query)
                         console.log("Testing: ", pvmUser);
                         if (pvmUser == null) {
-                            await createPVM(key, value)
+                            await createPVM(query, value)
                         } else {
-                            await updatePVM(key, value);
+                            await updatePVM(query, value);
                         }
                     }
             })
