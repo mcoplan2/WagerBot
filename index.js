@@ -214,7 +214,7 @@ client.on('messageCreate', message => {
                     if (gpUser == null) {
                         await createGP(key, value)
                     } else {
-                        await updateGP(gpUser, value);
+                        await updateGP(gpUser.name, value);
                     }
                 }
             })
@@ -239,7 +239,7 @@ client.on('messageCreate', message => {
                         if (pvmUser == null) {
                             await createPVM(key, value)
                         } else {
-                            await updatePVM(pvmUser, value);
+                            await updatePVM(pvmUser.name, value);
                         }
                     }
             })
