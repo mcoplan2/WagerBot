@@ -231,10 +231,9 @@ client.on('messageCreate', message => {
                         j = j+1;
                         // if the user is not in the database create a new document 
                         // else update the document
-                        const query = { name: key.replace(/\s/g, "") };
                         const pvmUsers = db.collection("pvmmodels");
-                        const pvmUser = await pvmUsers.findOne(query);
-                        console.log("query:", query)
+                        const pvmUser = await pvmUsers.findOne(key);
+                        console.log("query:", key)
                         console.log("Testing: ", pvmUser);
                         if (pvmUser == null) {
                             await createPVM(key, value)
