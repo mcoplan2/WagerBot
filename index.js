@@ -212,7 +212,7 @@ client.on('messageCreate', message => {
                     console.log("query:", query)
                     console.log("testing", gpUser);
                     if (gpUser == null) {
-                        await createGP(key, value)
+                        await createGP(query.name, value)
                     } else {
                         await updateGP(gpUser.name, value);
                     }
@@ -237,7 +237,7 @@ client.on('messageCreate', message => {
                         console.log("query:", query)
                         console.log("Testing: ", pvmUser);
                         if (pvmUser == null) {
-                            await createPVM(key, value)
+                            await createPVM(query.name, value)
                         } else {
                             await updatePVM(pvmUser.name, value);
                         }
