@@ -175,10 +175,10 @@ client.on('messageCreate', message => {
                 }
               }
 
-            const pkReportCardChannelId = "1085620863086379099";
+            const pkReportCardChannelId = "1288088138748792892";
             const pkReportCardChannel = client.channels.cache.get(pkReportCardChannelId);
 
-            const pvmerReportChannelId = "1087909950736576643";
+            const pvmerReportChannelId = "1288088160030687256";
             const pvmerReportChannel = client.channels.cache.get(pvmerReportChannelId);
             
             if(pkers.size > 0) {
@@ -255,9 +255,9 @@ client.on('messageCreate', message => {
             rsPkers.length = 0;
             rsPvmers.length = 0;
             console.log("Messages " + collected.size);
-            const leaderboardChannelId = '1085554952874774659';
+            const leaderboardChannelId = '1288088194432106578';
             const leaderboardChannel = client.channels.cache.get(leaderboardChannelId);
-            const leaderboardPVMChannelId = '1087909911763107840';
+            const leaderboardPVMChannelId = '1288088234840293438';
             const leaderboardPVMChannel = client.channels.cache.get(leaderboardPVMChannelId);
             // give a chance for the database to update before displaying new leaderboard
             await sleep(60000)

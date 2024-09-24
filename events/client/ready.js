@@ -5,10 +5,10 @@ module.exports = async (client) => {
 
     const prefix = process.env.PREFIX;
     console.log('Bot is ON!');
-    const channel = client.channels.cache.get('1084902149982531728');
+    const channel = client.channels.cache.get('1288087805574123583');
     channel.send("?listen")
     cron.schedule('0 8 * * *', () => {
-        const channel = client.channels.cache.get('1084902149982531728'); // replace <channel-id> with the actual channel ID
+        const channel = client.channels.cache.get('1288087805574123583'); // replace <channel-id> with the actual channel ID
         channel.send('?stop');
         setTimeout(() => {
           channel.send('?listen');
