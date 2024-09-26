@@ -25,9 +25,11 @@ module.exports = {
         randomNumber = 3;
         }
 
+        const displayName = messageCreate.member ? messageCreate.member.displayName : messageCreate.author.username;
+
         return messageCreate.channel.send({embeds: [new MessageEmbed()
                             .setColor(0x00FFFF)
-                            .setAuthor({ name: `${messageCreate.author.username}`, 
+                            .setAuthor({ name: `${displayName}`, 
                                         iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
                             .setDescription(`${messageCreate.author.username}, you have rolled a ${randomNumber}!`)
                             .setTimestamp()]});

@@ -35,7 +35,7 @@ async function updatePVMLeaderboard(channel, client) {
 
             if(err) { 
                 console.log(err)
-        }
+            }
 
         const leaderboardHtml = ReactDOMServer.renderToString(<Pvmleaderboard players={result} />);
 
@@ -46,7 +46,7 @@ async function updatePVMLeaderboard(channel, client) {
             puppeteerArgs: { args: [ '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--no-first-run', '--headless', '--no-zygote', '--disable-gpu' ], headless: true, ignoreHTTPSErrors: true },
             encoding: 'buffer',
             scale: 1
-            };
+        };
             
             // Use node-html-to-image to convert the HTML table to a PNG image buffer
             await nodeHtmlToImage({ html: leaderboardHtml, puppeteerArgs: options.puppeteerArgs }, options)

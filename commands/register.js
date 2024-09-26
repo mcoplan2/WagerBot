@@ -12,9 +12,11 @@ module.exports = {
         const eligibleRole = messageCreate.guild.roles.cache.find(role => role.name === role_name);
 
         await messageCreate.member.roles.add(eligibleRole);
+
+        const displayName = messageCreate.member ? messageCreate.member.displayName : messageCreate.author.username;
         const newEmbed = new MessageEmbed()
             .setColor(0x00FFFF)
-            .setAuthor({ name: `${messageCreate.author.username} is verified`, iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
+            .setAuthor({ name: `${displayName} is verified`, iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
             .setDescription('You are now eligible to earn tokens on this server!')
             .setTimestamp()
             .setThumbnail('attachment://index.jpg')

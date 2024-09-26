@@ -37,7 +37,7 @@ setInterval(() => {
 // Input Discord Token
 client.login(process.env.DISCORD_TOKEN);
 
-const approvedMembers = ["Xmas Bandit", "E2P", "schol", "l o d a m", "Dualerz", 
+const approvedMembers = ["Xmas Bandit", "E2P", "schol", "testuser", "Dualerz", 
                         "Kemp", "TurkeyMaster", "John Creasy", "Scotticon",
                         "Flemingo", "Just Darsh", "DEMUNLULLIO", "Huutista", 
                         "bighunterkid", "Packed", "Moooosey", "Roelol", "gayp", 
@@ -96,16 +96,6 @@ client.on('messageCreate', message => {
                         }
                     }
                 }
-
-                    console.log(rsPkers)
-                    // if(pkers.get(pkerName) == undefined) {
-                    //     pkers.set(pkerName, pkerCoins);
-                    // } else {
-                    //     // if the player is in the map, increment their coins
-                    //     pkers.set(pkerName, (pkers.get(pkerName)+pkerCoins));
-                    // }
-                
-                //console.log(pkers.get(pkerName));
             }
 
             if ((message.content.includes("received a drop:")) || (message.content.includes("special loot from a raid:"))) {
@@ -198,7 +188,7 @@ client.on('messageCreate', message => {
             pkersSorted.forEach(async function(value, key){
                 if (value>0){
                     console.log(value);
-                    //make this outaput top GP, lowest, list everyone, total all loot
+                    //make this output top GP, lowest, list everyone, total all loot
                     sum += value;
                     if (sum > 0) {
                         pkReportCardChannel.send(`${i}`+") "+key +": "+ value.toLocaleString("en-US") +" GP")

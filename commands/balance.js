@@ -21,9 +21,11 @@ module.exports = {
             return messageCreate.channel.send(`You need to ${prefix}register before using this bot.`);
         }
 
+        const displayName = messageCreate.member ? messageCreate.member.displayName : messageCreate.author.username;
+
         const newEmbed = new MessageEmbed()
             .setColor(0x00FFFF)
-            .setAuthor({ name: `${messageCreate.author.username}'s Balance`, iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
+            .setAuthor({ name: `${displayName}'s Balance`, iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
             .addFields(
                 { name: 'Tokens', value: `${profileData.tokens}`, inline: true },
                 { name: 'Bank', value: `${profileData.bank}` , inline: true }

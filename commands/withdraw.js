@@ -28,10 +28,13 @@ module.exports = {
             
             // update the users tokens and return the embed with their information.
             await updateTokensAndBank(messageCreate.author.id, amount, -amount);
+            
+
+            const displayName = messageCreate.member ? messageCreate.member.displayName : messageCreate.author.username;
 
             return messageCreate.channel.send({embeds: [new MessageEmbed()
                                 .setColor(0x00FFFF)
-                                .setAuthor({ name: `${messageCreate.author.username}'s Withdrawal slip`, 
+                                .setAuthor({ name: `${displayName}'s Withdrawal slip`, 
                                             iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
                                 .addFields({ name: 'Withdrew: ', value: `${amount}`, inline: true },)
                                 .setTimestamp()]});

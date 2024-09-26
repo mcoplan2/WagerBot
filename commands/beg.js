@@ -32,12 +32,14 @@ module.exports = {
         }
 
         await updateTokens(messageCreate.author.id, randomNumber);
+        
+        const displayName = messageCreate.member ? messageCreate.member.displayName : messageCreate.author.username;
 
         return messageCreate.channel.send({embeds: [new MessageEmbed()
                             .setColor(0x00FFFF)
-                            .setAuthor({ name: `${messageCreate.author.username}`, 
+                            .setAuthor({ name: `${displayName}`, 
                                         iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
-                            .setDescription(`${messageCreate.author.username}, you recieved ${randomNumber} **tokens**!`)
+                            .setDescription(`${displayName}, you recieved ${randomNumber} **tokens**!`)
                             .setTimestamp()]});
     }
 };

@@ -125,7 +125,7 @@ module.exports = {
             const no_users_no_dups = getDifference(no_users, yes_users);
             
             // Duration of the bet, Currently 5m, change this value to increase/decrease duration
-            await sleep(360000);
+            await sleep(120000);
 
             // Create another embed to ask the user for the result
             let messageEmbed2 = await messageCreate.channel.send({embeds: [newEmbed2], components: [row2]})

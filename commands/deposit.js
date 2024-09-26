@@ -28,9 +28,12 @@ module.exports = {
             // update the users tokens and return the embed with their information.
             await updateTokensAndBank(messageCreate.author.id, -amount, amount);
             
+            
+            const displayName = messageCreate.member ? messageCreate.member.displayName : messageCreate.author.username;
+
             return messageCreate.channel.send({embeds: [new MessageEmbed()
                                 .setColor(0x00FFFF)
-                                .setAuthor({ name: `${messageCreate.author.username}'s Deposit Slip`, 
+                                .setAuthor({ name: `${displayName}'s Deposit Slip`, 
                                             iconURL: `${messageCreate.author.displayAvatarURL({dynamic:true})}` })
                                 .addFields({ name: 'Deposited: ', value: `${amount}`, inline: true },)
                                 .setTimestamp()]});
